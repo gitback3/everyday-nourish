@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Everyday Nourish</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Nourish">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#5b6b3a">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{
+  --bg:#f7f3ea; --card:#ffffff; --ink:#2b2a26; --muted:#6f6a5f; --line:#e6dfcf;
+  --olive:#5b6b3a; --olive-2:#7d8f52; --terra:#c0623b; --sand:#efe6d2; --chip:#f2ecdf;
+  --shadow:0 2px 10px rgba(60,50,30,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#1c1d18;--card:#26271f;--ink:#efeadf;--muted:#b3ad9e;--line:#3a3b31;--olive:#a9bd78;--olive-2:#8fa35f;--terra:#e08a63;--sand:#2f3026;--chip:#303127;--shadow:none}
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+a{color:var(--olive)}
+header.top{position:sticky;top:0;z-index:5;background:var(--bg);padding:calc(10px + env(safe-area-inset-top)) 16px 10px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px}
+header.top .back{background:none;border:0;color:var(--olive);font-size:16px;padding:6px 4px;cursor:pointer}
+header.top h1{font-size:19px;margin:0;font-family:Georgia,"Times New Roman",serif;letter-spacing:.2px;flex:1}
+header.top .logo{width:30px;height:30px;border-radius:9px;background:var(--olive);display:grid;place-items:center;color:#fff;font-size:17px}
+main{max-width:680px;margin:0 auto;padding:16px 16px calc(40px + env(safe-area-inset-bottom))}
+.hero{background:linear-gradient(135deg,var(--olive),var(--olive-2));color:#fff;border-radius:18px;padding:18px;margin-bottom:16px}
+.hero h2{margin:0 0 4px;font-family:Georgia,serif;font-size:24px}
+.hero p{margin:0;opacity:.92;font-size:14px}
+.label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 0 6px;font-weight:600}
+.seg{display:flex;background:var(--sand);border-radius:12px;padding:4px;gap:4px}
+.seg button{flex:1;border:0;background:transparent;padding:10px 6px;border-radius:9px;font-size:15px;color:var(--ink);cursor:pointer}
+.seg button.on{background:var(--card);box-shadow:var(--shadow);font-weight:600;color:var(--olive)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:left;cursor:pointer;box-shadow:var(--shadow);color:var(--ink);font-size:16px}
+.tile .ic{font-size:26px;display:block;margin-bottom:6px}
+.tile b{display:block;font-size:17px}
+.tile small{color:var(--muted)}
+.wide{grid-column:1/-1;display:flex;align-items:center;gap:12px}
+.wide .ic{margin:0}
+.btn{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:11px;padding:10px 14px;font-size:15px;cursor:pointer;background:var(--olive);color:#fff;font-weight:600}
+.btn.ghost{background:var(--sand);color:var(--ink);font-weight:500}
+.btn.terra{background:var(--terra)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:var(--shadow)}
+.card .ttl{display:inline;font-size:18px;font-weight:700;color:var(--olive);text-decoration:none;background:linear-gradient(transparent 62%,rgba(192,98,59,.22) 62%);font-family:Georgia,serif}
+.card .head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card p{margin:6px 0 10px;color:var(--muted);font-size:14.5px}
+.heart{background:none;border:0;font-size:22px;cursor:pointer;line-height:1;padding:2px}
+.badge{display:inline-block;font-size:11px;padding:2px 7px;border-radius:20px;background:var(--chip);color:var(--muted);margin-right:4px;margin-top:4px}
+.badge.on{background:var(--terra);color:#fff}
+.nut{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;text-align:center}
+.nut div{background:var(--chip);border-radius:9px;padding:6px 2px}
+.nut b{display:block;font-size:15px}
+.nut span{font-size:10.5px;color:var(--muted)}
+.who{font-size:12px;color:var(--muted);margin:8px 0 4px}
+.na{font-size:13px;color:var(--muted);font-style:italic;background:var(--chip);border-radius:9px;padding:8px}
+h2.pg{font-family:Georgia,serif;margin:4px 0 4px;font-size:26px;line-height:1.2}
+.sub{color:var(--muted);margin:0 0 12px;font-size:14px}
+.times{display:flex;gap:8px;margin:10px 0}
+.times div{flex:1;background:var(--chip);border-radius:11px;padding:8px;text-align:center}
+.times b{display:block;font-size:17px}
+.times span{font-size:12px;color:var(--muted)}
+ul.ing{list-style:none;padding:0;margin:0}
+ul.ing li{padding:9px 0;border-bottom:1px solid var(--line)}
+ul.ing li:last-child{border:0}
+ul.ing .q{font-weight:700;color:var(--olive)}
+ul.ing .swap{display:block;font-size:13px;color:var(--terra)}
+ol.steps{padding-left:22px;margin:0}
+ol.steps li{margin-bottom:10px}
+.section h3{font-family:Georgia,serif;margin:18px 0 8px;font-size:20px}
+.note{font-size:13px;color:var(--muted);background:var(--sand);border-radius:11px;padding:10px;margin:10px 0}
+.day{margin-bottom:14px}
+.day h3{font-family:Georgia,serif;margin:0 0 6px}
+.meal-line{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.meal-line:last-of-type{border:0}
+.meal-line .k{color:var(--muted);font-size:12px;width:62px;flex-shrink:0}
+.meal-line a{flex:1;text-decoration:none;font-weight:600}
+.meal-line .c{color:var(--muted);white-space:nowrap}
+.tot{font-size:13px;color:var(--muted);margin-top:6px}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:12px;padding-bottom:2px}
+.tabs button{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:7px 13px;font-size:14px;white-space:nowrap;color:var(--ink);cursor:pointer}
+.tabs button.on{background:var(--olive);color:#fff;border-color:var(--olive)}
+.saveto{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.saveto button{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:6px 12px;font-size:13.5px;cursor:pointer;color:var(--ink)}
+.saveto button.on{background:var(--terra);color:#fff;border-color:var(--terra)}
+input[type=text],input[type=password]{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:15px}
+.toggle{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.sw{width:50px;height:30px;border-radius:30px;background:var(--line);position:relative;border:0;cursor:pointer;flex-shrink:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s}
+.sw.on{background:var(--olive)}
+.sw.on::after{left:23px}
+.loading{text-align:center;color:var(--muted);padding:30px 0}
+.spin{width:28px;height:28px;border:3px solid var(--line);border-top-color:var(--olive);border-radius:50%;animation:s 0.8s linear infinite;margin:0 auto 10px}
+@keyframes s{to{transform:rotate(360deg)}}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:20}
+.toast.show{opacity:1}
+.foot{font-size:12px;color:var(--muted);text-align:center;margin-top:24px}
+details.ex{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow)}
+details.ex summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center}
+details.ex summary::-webkit-details-marker{display:none}
+details.ex summary span:first-child{min-width:0;color:var(--ink)}
+details.ex summary .edit{color:var(--olive);font-weight:600;white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:1px solid var(--line);background:var(--bg);border-radius:20px;padding:7px 12px;font-size:14px;color:var(--ink);cursor:pointer}
+.chip.on{background:var(--terra);border-color:var(--terra);color:#fff}
+.chip.on::before{content:"✕ "}
+ul.ing s{color:var(--muted)}
+.swapnote{font-size:12.5px;color:var(--terra);margin:-4px 0 8px}
+.ai{border:1.5px dashed var(--olive);border-radius:16px;padding:14px;margin:4px 0 14px;background:var(--card)}
+.ai .btn{width:100%;justify-content:center}
+.src{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.src:last-child{border:0}
+.src span:last-child{color:var(--muted);text-align:right}
+</style>
+</head>
+<body>
+<header class="top" id="topbar"></header>
+<main id="app"><noscript>
+  <div class="hero"><h2>Everyday Nourish</h2><p>Your meal planner is ready, but this screen is only a preview.</p></div>
+  <div class="card"><b>On an iPhone?</b>
+    <p>iPhones open attached web files in a preview that can’t run apps, so the planner can’t start here. To use it, open it from a web address in Safari:</p>
+    <ol class="steps">
+      <li>Open the Everyday Nourish link you were sent in Safari.</li>
+      <li>Tap the Share button, then “Add to Home Screen” so it opens like an app.</li>
+    </ol>
+    <p class="sub">If you only have this file, ask whoever sent it for the web link.</p>
+  </div>
+</noscript></main>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+/* ============================================================
+   EVERYDAY NOURISH — Mediterranean-style meal planner
+   Built on evidence-based guidance for adults in their mid-50s:
+   Mediterranean-centric / DASH-style patterns with healthy global dishes, ~25-30 g protein per meal
+   to help preserve muscle, high fiber, olive oil & omega-3 fats,
+   limited added sugar, sodium and saturated fat.
+   Nutrition values are per serving estimates for "Her" portion
+   (~1,800 kcal/day pattern). "His" portion = 1.3x (~2,400 kcal/day).
+   ============================================================ */
+
+/* ---------- Recipe library ----------
+ nu = [calories, fat g, cholesterol mg, sugar g, protein g]  (per "Her" serving)
+ i  = [qty per serving, unit, ingredient, substitute]
+*/
+const LIB = [
+/* ---------------- BREAKFAST ---------------- */
+{id:'b1',c:'b',n:'Greek Yogurt Parfait with Berries & Walnuts',cu:'Mediterranean',t:['vegetarian','high-protein','no-cook'],
+ d:'Creamy Greek yogurt layered with antioxidant-rich berries, omega-3 walnuts, flax and a touch of honey.',p:5,k:0,nu:[330,15,15,17,21],
+ i:[[0.75,'cup','plain 2% Greek yogurt','nonfat Greek yogurt or unsweetened skyr'],[0.5,'cup','mixed berries','frozen berries, thawed'],[2,'tbsp','chopped walnuts','almonds or pumpkin seeds'],[1,'tbsp','ground flaxseed','chia seeds'],[1,'tsp','honey','pure maple syrup, or omit']],
+ s:['Spoon half the yogurt into a bowl or glass.','Add half the berries and half the walnuts, then repeat the layers.','Sprinkle with ground flaxseed and drizzle with honey.','Serve right away, or cover and refrigerate up to 1 day (add the nuts just before eating so they stay crunchy).']},
+{id:'b2',c:'b',n:'Spinach & Feta Scramble with Whole-Grain Toast',cu:'Greek',t:['vegetarian','high-protein','quick'],
+ d:'Soft-scrambled eggs folded with wilted spinach and tangy feta, served with whole-grain toast and sweet cherry tomatoes.',p:5,k:6,nu:[360,20,385,5,21],
+ i:[[2,'','large eggs','1 egg + 3 tbsp egg whites to lower cholesterol'],[1,'cup','baby spinach','chopped kale or chard'],[2,'tbsp','crumbled feta','goat cheese'],[1,'tsp','extra-virgin olive oil',''],[1,'slice','whole-grain bread','sprouted-grain bread'],[0.5,'cup','cherry tomatoes, halved',''],[0,'','black pepper, to taste','']],
+ s:['Whisk the eggs with a pinch of black pepper.','Heat the olive oil in a nonstick skillet over medium heat. Add spinach and stir about 1 minute until wilted.','Lower heat to medium-low, pour in the eggs and stir gently with a spatula 2–3 minutes until just set.','Remove from heat and fold in the feta.','Toast the bread and serve alongside the eggs and cherry tomatoes.']},
+{id:'b3',c:'b',n:'Steel-Cut Oats with Cinnamon Apple & Almonds',cu:'American',t:['vegan','high-fiber','heart-healthy'],
+ d:'Hearty steel-cut oats simmered until creamy, topped with warm cinnamon apple and toasted almonds — rich in cholesterol-lowering soluble fiber.',p:5,k:25,nu:[290,9,0,10,9],
+ i:[[0.25,'cup','steel-cut oats','1/2 cup rolled oats (cook 5 minutes)'],[1,'cup','water',''],[0.25,'cup','unsweetened almond milk','any milk or soy milk for extra protein'],[0.5,'','apple, diced','pear'],[1,'tbsp','sliced almonds','walnuts or pecans'],[0.5,'tsp','ground cinnamon',''],[0,'','pinch of salt','']],
+ s:['Bring the water and salt to a boil in a small saucepan, then stir in the oats.','Reduce heat to low and simmer uncovered 20–25 minutes, stirring occasionally, until tender.','Add the diced apple and cinnamon for the last 5 minutes of cooking.','Stir in the almond milk for creaminess.','Top with almonds. Tip: cook a batch for the week and reheat with a splash of milk.']},
+{id:'b4',c:'b',n:'Shakshuka (Eggs in Spiced Tomato Sauce)',cu:'Middle Eastern',t:['vegetarian','high-protein'],
+ d:'Eggs gently poached in a cumin-and-paprika tomato and pepper sauce, finished with fresh herbs and warm pita.',p:10,k:20,nu:[340,16,370,9,18],
+ i:[[1,'tsp','extra-virgin olive oil',''],[0.25,'','onion, diced',''],[0.25,'','red bell pepper, diced','jarred roasted red pepper'],[1,'clove','garlic, minced',''],[0.5,'tsp','ground cumin',''],[0.25,'tsp','smoked paprika','sweet paprika'],[0.5,'cup','crushed tomatoes (no salt added)','chopped fresh tomatoes'],[2,'','large eggs','1 egg + 2 egg whites'],[1,'tbsp','fresh parsley or cilantro',''],[0.5,'','whole-wheat pita','whole-grain toast']],
+ s:['Heat the oil in a small skillet over medium. Cook onion and pepper about 5 minutes until soft.','Add garlic, cumin and paprika; stir 30 seconds until fragrant.','Add the crushed tomatoes and simmer 5–7 minutes until slightly thickened.','Make small wells in the sauce, crack in the eggs, cover and cook 5–7 minutes until whites are set and yolks are done to your liking.','Top with herbs and serve with warm pita for dipping. Cooking for two? Use a 10-inch skillet.']},
+{id:'b5',c:'b',n:'Smoked Salmon & Avocado Rye Toast',cu:'Scandinavian',t:['pescatarian','omega-3','quick'],
+ d:'Dense rye toast with smashed avocado, silky smoked salmon, capers and dill — a quick heart-healthy omega-3 boost.',p:8,k:2,nu:[320,17,15,2,16],
+ i:[[1,'slice','dark rye bread','whole-grain sourdough'],[0.33,'','ripe avocado',''],[2,'oz','smoked salmon','canned salmon flaked with lemon (lower sodium)'],[1,'tsp','capers, rinsed',''],[1,'tbsp','red onion, thinly sliced',''],[1,'tsp','lemon juice',''],[0,'','fresh dill and black pepper','chives']],
+ s:['Toast the rye bread.','Mash the avocado with lemon juice and pepper; spread over the toast.','Layer the smoked salmon on top.','Finish with red onion, capers and dill. Serve immediately. (Smoked salmon is salty — keep other meals lower in sodium that day.)']},
+{id:'b6',c:'b',n:'Veggie Frittata Muffins with Fresh Berries',cu:'American',t:['vegetarian','high-protein','meal-prep'],
+ d:'Make-ahead baked egg muffins loaded with zucchini, peppers and parmesan, served with a cup of fresh berries.',p:10,k:20,nu:[250,9,190,9,22],
+ i:[[1,'','large egg',''],[0.5,'cup','liquid egg whites','3 egg whites'],[0.25,'cup','zucchini, grated',''],[0.25,'cup','red bell pepper, diced',''],[2,'tbsp','green onion, sliced',''],[1,'tbsp','grated parmesan','nutritional yeast'],[0.5,'cup','fresh berries','orange segments'],[0,'','olive oil spray','']],
+ s:['Heat oven to 350°F (175°C). Lightly oil a muffin tin (2 cups per serving).','Whisk the egg and egg whites; stir in the vegetables and parmesan.','Divide into the muffin cups about 3/4 full.','Bake 18–22 minutes until puffed and set in the center.','Cool 5 minutes and serve with berries. Leftovers keep 4 days refrigerated.']},
+{id:'b7',c:'b',n:'Overnight Chia Pudding with Mango',cu:'Tropical',t:['vegetarian','high-fiber','make-ahead'],
+ d:'Silky chia pudding soaked overnight in almond milk and yogurt, topped with sweet mango and lime zest.',p:5,k:0,nu:[300,13,3,18,12],
+ i:[[3,'tbsp','chia seeds',''],[0.75,'cup','unsweetened almond milk','soy milk for more protein'],[0.25,'cup','plain Greek yogurt','coconut yogurt (dairy-free)'],[0.5,'tsp','vanilla extract',''],[1,'tsp','maple syrup','omit'],[0.5,'cup','diced mango','pineapple or berries'],[0,'','lime zest','']],
+ s:['Stir chia, almond milk, yogurt, vanilla and maple syrup together in a jar.','Wait 5 minutes and stir again to break up clumps.','Cover and refrigerate at least 4 hours or overnight.','Top with mango and lime zest before serving.']},
+{id:'b8',c:'b',n:'Cottage Cheese Bowl with Peaches & Pistachios',cu:'American',t:['vegetarian','high-protein','no-cook'],
+ d:'Protein-rich cottage cheese topped with juicy peaches, crunchy pistachios and cinnamon — great for muscle maintenance.',p:5,k:0,nu:[260,7,15,20,23],
+ i:[[0.75,'cup','low-fat cottage cheese','plain Greek yogurt'],[1,'','peach, sliced','nectarine, or 1/2 cup canned peaches in juice'],[1,'tbsp','shelled pistachios','almonds'],[0.25,'tsp','ground cinnamon',''],[0.5,'tsp','honey','omit']],
+ s:['Spoon the cottage cheese into a bowl.','Top with sliced peach and pistachios.','Dust with cinnamon and drizzle with honey if you like.']},
+{id:'b9',c:'b',n:'Buckwheat Banana Walnut Pancakes',cu:'American',t:['vegetarian','whole-grain','weekend'],
+ d:'Nutty buckwheat-oat pancakes naturally sweetened with ripe banana and studded with walnuts.',p:10,k:10,nu:[380,14,186,12,16],
+ i:[[0.25,'cup','buckwheat flour','whole-wheat flour'],[0.25,'cup','rolled oats, blended into flour',''],[0.5,'tsp','baking powder',''],[0.5,'','ripe banana, mashed',''],[1,'','large egg, beaten','1 flax egg (1 tbsp ground flax + 3 tbsp water)'],[0.25,'cup','unsweetened almond milk',''],[1,'tbsp','chopped walnuts',''],[0.5,'tsp','avocado or olive oil',''],[0,'','pinch of cinnamon','']],
+ s:['Whisk the flours, baking powder and cinnamon.','In another bowl mix banana, egg and milk; stir into the dry ingredients just until combined. Fold in the walnuts.','Heat a lightly oiled nonstick skillet over medium. Pour 1/4-cup portions of batter.','Cook 2–3 minutes until bubbles form, flip and cook 1–2 minutes more.','Serve with fresh berries; skip syrup or use just 1 tsp maple.']},
+{id:'b10',c:'b',n:'Mediterranean Breakfast Wrap',cu:'Mediterranean',t:['vegetarian','high-protein','portable'],
+ d:'A whole-wheat wrap filled with scrambled eggs, hummus, spinach, tomato and olives — perfect on the go.',p:6,k:5,nu:[330,13,186,4,22],
+ i:[[1,'','whole-wheat tortilla (8-inch)','high-fiber low-carb wrap'],[1,'','large egg',''],[0.25,'cup','liquid egg whites','2 egg whites'],[2,'tbsp','hummus',''],[0.5,'cup','baby spinach',''],[0.25,'','tomato, diced',''],[4,'','kalamata olives, sliced',''],[0.5,'tsp','olive oil','']],
+ s:['Whisk the egg and egg whites. Heat oil in a skillet over medium and scramble 2–3 minutes, adding spinach in the last 30 seconds.','Warm the tortilla 15 seconds in a dry pan.','Spread hummus down the center, then add eggs, tomato and olives.','Fold in the sides, roll tightly and slice in half.']},
+{id:'b11',c:'b',n:'Savory Quinoa Breakfast Bowl',cu:'Mediterranean',t:['vegetarian','gluten-free','high-protein'],
+ d:'Warm quinoa topped with a jammy egg, avocado, cherry tomatoes and a sprinkle of za’atar.',p:5,k:10,nu:[370,18,186,4,16],
+ i:[[0.5,'cup','cooked quinoa','farro or brown rice'],[1,'','large egg',''],[0.25,'','avocado, sliced',''],[0.5,'cup','cherry tomatoes, halved',''],[0.5,'cup','baby arugula or spinach',''],[1,'tsp','extra-virgin olive oil',''],[0.5,'tsp','za’atar','everything-bagel seasoning (low-sodium)']],
+ s:['Bring a small pot of water to a boil, lower in the egg and cook 7 minutes for a jammy yolk. Cool in ice water and peel.','Warm the quinoa and place in a bowl over the greens.','Add tomatoes and avocado, then halve the egg on top.','Drizzle with olive oil and sprinkle with za’atar.']},
+{id:'b12',c:'b',n:'Berry-Spinach Protein Smoothie',cu:'American',t:['vegetarian','quick','high-protein'],
+ d:'A creamy blend of berries, spinach, Greek yogurt and almond butter — breakfast in a glass.',p:5,k:0,nu:[310,11,10,19,22],
+ i:[[1,'cup','frozen mixed berries',''],[1,'cup','baby spinach',''],[0.5,'cup','plain Greek yogurt','silken tofu'],[0.75,'cup','unsweetened almond milk','low-fat milk'],[1,'tbsp','almond butter','peanut butter'],[1,'tbsp','ground flaxseed','']],
+ s:['Add the almond milk to the blender first, then spinach, yogurt, berries, almond butter and flax.','Blend on high 45–60 seconds until completely smooth.','Add a splash more milk if too thick. Serve immediately.']},
+{id:'b13',c:'b',n:'Japanese-Style Salmon & Rice Breakfast Bowl',cu:'Japanese',t:['pescatarian','omega-3','high-protein'],
+ d:'Brown rice with flaked salmon, a soft egg, quick-pickled cucumber and a small cup of miso soup — a protein-rich Japanese-inspired start.',p:10,k:15,nu:[410,14,215,4,30],
+ i:[[0.5,'cup','cooked brown rice','quinoa'],[2.5,'oz','salmon fillet','canned salmon'],[1,'','large egg','firm tofu cubes'],[0.5,'','cucumber, thinly sliced',''],[1,'tsp','rice vinegar',''],[1,'tsp','white miso paste','low-sodium miso'],[0.75,'cup','hot water',''],[1,'','green onion, sliced',''],[0.5,'tsp','toasted sesame seeds','']],
+ s:['Bake the salmon at 400°F (200°C) 10–12 minutes until it flakes, or use canned salmon.','Toss cucumber with rice vinegar and set aside 5 minutes.','Lower the egg into boiling water and cook 7 minutes for a soft yolk; cool in ice water and peel.','Whisk miso into hot (not boiling) water and add half the green onion.','Build the bowl with rice, salmon, halved egg and cucumber; top with sesame and remaining onion. Serve the miso soup alongside.']},
+{id:'b14',c:'b',n:'Besan Chilla (Indian Chickpea-Flour Pancakes)',cu:'Indian',t:['vegetarian','gluten-free','high-fiber'],
+ d:'Savory chickpea-flour crêpes flecked with onion, tomato, spinach and cumin, served with a spoonful of cool yogurt.',p:10,k:10,nu:[300,10,5,6,15],
+ i:[[0.33,'cup','chickpea flour (besan)',''],[0.33,'cup','water',''],[2,'tbsp','onion, finely chopped',''],[2,'tbsp','tomato, finely chopped',''],[0.25,'cup','spinach, chopped',''],[0.25,'tsp','ground cumin',''],[0.125,'tsp','turmeric',''],[1,'tsp','avocado or olive oil',''],[3,'tbsp','plain Greek yogurt','coconut yogurt']],
+ s:['Whisk chickpea flour, water, cumin, turmeric and a pinch of salt into a smooth, pourable batter; rest 5 minutes.','Stir in onion, tomato and spinach.','Heat a nonstick skillet over medium and brush with oil. Pour in half the batter and spread into a thin round.','Cook 2–3 minutes until the edges lift, flip and cook 2 minutes more. Repeat with the remaining batter.','Serve warm with yogurt.']},
+{id:'b15',c:'b',n:'Black Bean & Egg Breakfast Tacos',cu:'Mexican',t:['vegetarian','high-fiber'],
+ d:'Warm corn tortillas filled with fluffy eggs, cumin black beans, fresh pico de gallo and avocado.',p:8,k:6,nu:[350,13,186,3,20],
+ i:[[2,'','corn tortillas (6-inch)','whole-wheat tortillas'],[1,'','large egg',''],[2,'tbsp','liquid egg whites',''],[0.33,'cup','black beans, rinsed','pinto beans'],[2,'tbsp','pico de gallo or salsa',''],[0.25,'','avocado, sliced',''],[1,'tsp','olive oil',''],[0,'','cilantro and lime wedge','parsley']],
+ s:['Warm the beans with a pinch of cumin, mashing lightly.','Whisk egg and egg whites; scramble in oil over medium-low 2–3 minutes.','Warm tortillas in a dry skillet 20 seconds per side.','Fill with beans and eggs, then top with pico de gallo, avocado, cilantro and lime.']},
+{id:'b16',c:'b',n:'Skyr Bowl with Blueberries & Toasted Rye Crunch',cu:'Nordic',t:['vegetarian','high-protein'],
+ d:'Thick Icelandic skyr topped with blueberries, toasted rye flakes, pumpkin seeds and a hint of cardamom.',p:5,k:3,nu:[300,8,10,16,24],
+ i:[[0.75,'cup','plain skyr','plain Greek yogurt'],[0.5,'cup','blueberries',''],[2,'tbsp','rye or oat flakes',''],[1,'tbsp','pumpkin seeds',''],[0.5,'tsp','honey','omit'],[0,'','pinch of cardamom','cinnamon']],
+ s:['Toast rye flakes in a dry skillet over medium 2–3 minutes until fragrant.','Spoon skyr into a bowl.','Top with blueberries, toasted flakes and pumpkin seeds; drizzle with honey and dust with cardamom.']},
+{id:'b17',c:'b',n:'Turkish Çılbır (Poached Eggs over Garlic Yogurt)',cu:'Turkish',t:['vegetarian','high-protein'],
+ d:'Silky poached eggs on garlicky yogurt, finished with Aleppo-pepper olive oil, dill and warm pita.',p:5,k:8,nu:[340,19,375,6,24],
+ i:[[0.5,'cup','plain Greek yogurt',''],[1,'clove','garlic, grated',''],[2,'','large eggs',''],[1,'tsp','extra-virgin olive oil',''],[0.25,'tsp','Aleppo pepper or paprika',''],[1,'tbsp','fresh dill',''],[0.5,'','whole-wheat pita','whole-grain toast']],
+ s:['Stir garlic and a pinch of salt into room-temperature yogurt; spread onto a plate.','Bring a pan of water to a bare simmer, add a splash of vinegar and poach the eggs 3–4 minutes.','Warm the olive oil with Aleppo pepper for 30 seconds.','Set the eggs on the yogurt, drizzle with the pepper oil and scatter dill. Serve with warm pita.']},
+{id:'b18',c:'b',n:'Pumpkin Spice Overnight Oats',cu:'American',t:['vegetarian','high-fiber','make-ahead'],
+ d:'Creamy make-ahead oats with pumpkin purée, Greek yogurt and warm spices, topped with toasted pecans.',p:5,k:0,nu:[340,10,8,12,17],
+ i:[[0.5,'cup','rolled oats','certified gluten-free oats'],[0.5,'cup','unsweetened almond milk','low-fat milk'],[0.25,'cup','plain Greek yogurt',''],[0.25,'cup','pumpkin purée',''],[1,'tsp','maple syrup','omit'],[0.5,'tsp','pumpkin pie spice',''],[1,'tbsp','chopped pecans','pumpkin seeds']],
+ s:['Stir oats, milk, yogurt, pumpkin, maple and spice together in a jar.','Cover and refrigerate at least 4 hours or overnight.','Stir, loosen with a splash of milk if needed, and top with pecans.']},
+
+/* ---------------- LUNCH ---------------- */
+{id:'l13',c:'l',n:'Vietnamese Chicken & Herb Noodle Salad',cu:'Vietnamese',t:['high-protein','gluten-free'],
+ d:'Rice noodles, crunchy vegetables and lemongrass-bright herbs with grilled chicken and a light lime–fish sauce dressing.',p:20,k:10,nu:[440,11,85,9,33],
+ i:[[4,'oz','chicken breast','shrimp or firm tofu'],[1,'oz','rice vermicelli (dry)',''],[1,'cup','shredded lettuce',''],[0.5,'','cucumber, cut in matchsticks',''],[0.25,'cup','shredded carrot',''],[0.25,'cup','fresh mint, cilantro & basil',''],[1,'tbsp','lime juice',''],[1,'tsp','fish sauce','low-sodium soy sauce'],[1,'tsp','honey',''],[1,'tbsp','chopped peanuts','toasted sesame seeds']],
+ s:['Grill or pan-sear the chicken 5–7 minutes per side to 165°F (74°C); rest and slice.','Soak or boil the noodles per package directions; rinse under cold water and drain.','Whisk lime juice, fish sauce, honey and 1 tbsp water.','Pile lettuce, noodles, cucumber, carrot and herbs in a bowl; top with chicken.','Drizzle with dressing and sprinkle with peanuts.']},
+{id:'l14',c:'l',n:'Chana Masala with Spinach & Brown Rice',cu:'Indian',t:['vegan','high-fiber'],
+ d:'Chickpeas simmered in a gingery tomato-garam masala sauce with spinach, over brown rice.',p:10,k:25,nu:[460,10,0,10,16],
+ i:[[1,'tsp','olive or avocado oil',''],[0.25,'','onion, diced',''],[1,'clove','garlic, minced',''],[1,'tsp','fresh ginger, grated',''],[1,'tsp','garam masala',''],[0.25,'tsp','turmeric',''],[0.75,'cup','chickpeas, rinsed',''],[0.5,'cup','crushed tomatoes',''],[1,'cup','spinach',''],[0.33,'cup','cooked brown rice','cauliflower rice'],[1,'tsp','lemon juice','']],
+ s:['Sauté onion in oil over medium 5 minutes.','Add garlic, ginger, garam masala and turmeric; stir 1 minute.','Add chickpeas, tomatoes and 1/4 cup water; simmer 15 minutes, mashing a few chickpeas to thicken.','Stir in spinach until wilted; finish with lemon juice.','Serve over brown rice. Freezes well.']},
+{id:'l15',c:'l',n:'Sesame Soba Noodle Salad with Edamame',cu:'Japanese',t:['vegan','high-protein'],
+ d:'Chilled buckwheat soba with edamame, red cabbage and carrot in a tangy sesame–rice vinegar dressing.',p:15,k:5,nu:[420,13,0,7,20],
+ i:[[2,'oz','soba noodles (dry)','100% buckwheat soba for gluten-free'],[0.5,'cup','shelled edamame',''],[0.5,'cup','shredded red cabbage',''],[0.25,'cup','shredded carrot',''],[1,'','green onion, sliced',''],[1,'tbsp','low-sodium soy sauce','coconut aminos'],[1,'tbsp','rice vinegar',''],[1,'tsp','toasted sesame oil',''],[1,'tsp','sesame seeds','']],
+ s:['Cook soba 4–5 minutes, adding edamame for the last 2 minutes.','Drain and rinse under cold water until cool.','Whisk soy sauce, vinegar and sesame oil.','Toss noodles and edamame with cabbage, carrot, onion and dressing; top with sesame seeds.']},
+{id:'l16',c:'l',n:'Portuguese Caldo Verde with White Beans',cu:'Portuguese',t:['vegan','high-fiber'],
+ d:'A comforting potato and kale soup with smoked paprika and white beans — a lighter take on the Portuguese classic.',p:10,k:30,nu:[320,8,0,5,13],
+ i:[[1,'tsp','olive oil',''],[0.25,'','onion, diced',''],[1,'clove','garlic',''],[1,'','medium Yukon gold potato, diced',''],[1.5,'cup','low-sodium vegetable broth',''],[0.5,'cup','cannellini beans',''],[1.5,'cup','kale, thinly sliced','collard greens'],[0.25,'tsp','smoked paprika','']],
+ s:['Sauté onion and garlic in oil 4 minutes.','Add potato and broth; simmer 15 minutes until very tender.','Mash about half the potatoes in the pot to thicken.','Add beans, kale and paprika; simmer 5 minutes. Season with pepper and a drizzle of olive oil.']},
+{id:'l17',c:'l',n:'Thai Peanut Chicken Lettuce Cups',cu:'Thai',t:['high-protein','low-carb'],
+ d:'Ginger-garlic ground chicken in a light peanut-lime sauce, spooned into crisp lettuce cups.',p:15,k:8,nu:[390,17,80,7,34],
+ i:[[4,'oz','ground chicken breast','crumbled firm tofu'],[1,'tsp','avocado oil',''],[1,'clove','garlic',''],[1,'tsp','fresh ginger, grated',''],[0.25,'cup','red bell pepper, diced','water chestnuts'],[1,'tbsp','natural peanut butter','almond butter'],[2,'tsp','low-sodium soy sauce',''],[1,'tsp','lime juice',''],[4,'leaves','butter lettuce',''],[0,'','cilantro and sliced chili','']],
+ s:['Cook chicken in oil over medium-high 5–6 minutes, breaking it up, until no pink remains.','Add garlic, ginger and pepper; cook 1 minute.','Whisk peanut butter, soy sauce, lime and 1 tbsp warm water; stir into the chicken.','Spoon into lettuce leaves and top with cilantro and chili.']},
+{id:'l18',c:'l',n:'Avgolemono (Greek Lemon Chicken Soup)',cu:'Greek',t:['high-protein'],
+ d:'A silky Greek soup of chicken, orzo and vegetables thickened with a whisked egg-lemon mixture.',p:10,k:25,nu:[380,9,140,3,32],
+ i:[[2,'cup','low-sodium chicken broth',''],[3,'oz','cooked shredded chicken breast',''],[2,'tbsp','orzo (whole-wheat if available)','brown rice'],[0.25,'','carrot, diced',''],[0.5,'stalk','celery, diced',''],[0.5,'','large egg, beaten','1 egg yolk'],[1.5,'tbsp','lemon juice',''],[1,'tsp','fresh dill','']],
+ s:['Simmer broth with carrot and celery 8 minutes.','Add orzo and simmer 8 minutes until tender.','Whisk egg with lemon juice. Slowly whisk in a ladle of hot broth to temper it.','Take the pot off the heat and stir the egg mixture back in (do not boil, or it will curdle).','Stir in chicken and dill; warm gently and serve.']},
+
+/* ---------------- DINNER (more) ---------------- */
+{id:'d13',c:'d',n:'Thai Green Curry with Shrimp & Vegetables',cu:'Thai',t:['high-protein','gluten-free'],
+ d:'Shrimp, zucchini, peppers and green beans in a fragrant light-coconut green curry over brown jasmine rice.',p:15,k:15,nu:[480,18,170,7,30],
+ i:[[4,'oz','shrimp, peeled','chicken breast or tofu'],[0.33,'cup','light coconut milk',''],[1,'tbsp','green curry paste',''],[0.5,'cup','low-sodium broth',''],[0.5,'','zucchini, sliced',''],[0.5,'','red bell pepper, sliced',''],[0.5,'cup','green beans',''],[1,'tsp','fish sauce','low-sodium soy sauce'],[0.5,'cup','cooked brown jasmine rice',''],[0,'','Thai basil and lime','']],
+ s:['Stir curry paste in a dry pot over medium 1 minute until fragrant.','Add coconut milk and broth; bring to a simmer.','Add green beans 3 minutes, then zucchini and pepper 3 minutes.','Add shrimp and simmer 2–3 minutes until pink; stir in fish sauce.','Serve over rice with basil and lime.']},
+{id:'d14',c:'d',n:'Lean Beef Bibimbap Bowl',cu:'Korean',t:['high-protein'],
+ d:'Brown rice topped with garlicky spinach, carrots, sprouts, lean beef and a fried egg, with a touch of gochujang.',p:20,k:15,nu:[520,17,240,8,34],
+ i:[[3,'oz','lean sirloin strips or 93% lean ground beef','ground turkey or tofu'],[0.5,'cup','cooked brown rice',''],[1,'cup','spinach',''],[0.5,'','carrot, cut in matchsticks',''],[0.5,'cup','bean sprouts','sliced zucchini'],[1,'','large egg',''],[2,'tsp','low-sodium soy sauce',''],[1,'tsp','sesame oil',''],[1,'tsp','gochujang','sriracha']],
+ s:['Toss beef with half the soy sauce; sear in a hot skillet 3–4 minutes. Remove.','In the same pan, sauté carrot 2 minutes, then spinach and sprouts 1–2 minutes with the remaining soy.','Fry the egg in a little sesame oil to your liking.','Arrange rice, vegetables and beef in a bowl; top with the egg.','Thin gochujang with a little water and drizzle over; mix before eating.']},
+{id:'d15',c:'d',n:'Spanish Chicken & Brown Rice Paella Skillet',cu:'Spanish',t:['high-protein','one-pan'],
+ d:'Smoky paprika and saffron rice with chicken, peppers, tomato and peas, all in one pan.',p:15,k:30,nu:[510,14,95,5,36],
+ i:[[4,'oz','chicken breast, chunks','shrimp (add for last 5 minutes)'],[1,'tsp','olive oil',''],[0.25,'','onion, diced',''],[0.5,'','red bell pepper, diced',''],[1,'clove','garlic',''],[0.25,'cup','quick-cooking brown rice (uncooked)',''],[0.5,'tsp','smoked paprika',''],[0,'','pinch of saffron or turmeric',''],[0.75,'cup','low-sodium chicken broth',''],[0.5,'cup','diced tomatoes',''],[0.25,'cup','peas','']],
+ s:['Brown chicken in oil 4 minutes; remove.','Cook onion, pepper and garlic 4 minutes.','Stir in rice, paprika and saffron; add broth and tomatoes and bring to a simmer.','Return chicken, cover and cook on low 18–20 minutes until rice is tender.','Scatter peas over, cover 3 minutes, and serve with lemon wedges.']},
+{id:'d16',c:'d',n:'Tandoori-Spiced Salmon with Cucumber Raita',cu:'Indian',t:['omega-3','high-protein','gluten-free'],
+ d:'Yogurt-marinated salmon roasted with warm tandoori spices, served with cooling raita and roasted cauliflower.',p:10,k:15,nu:[480,22,85,6,40],
+ i:[[5,'oz','salmon fillet','chicken thigh (cook to 175°F)'],[0.25,'cup','plain Greek yogurt (marinade)',''],[1,'tsp','tandoori spice or garam masala',''],[1,'tsp','lemon juice',''],[0.25,'cup','plain Greek yogurt (raita)',''],[0.25,'','cucumber, grated',''],[1,'cup','cauliflower florets',''],[1,'tsp','olive oil','']],
+ s:['Mix marinade yogurt, spice and lemon; coat salmon and rest 20 minutes.','Heat oven to 425°F (220°C). Toss cauliflower with oil and roast 10 minutes.','Add salmon to the pan and roast 12–15 minutes until it flakes (145°F / 63°C).','Squeeze grated cucumber dry and stir into the raita yogurt with a pinch of cumin.','Serve salmon and cauliflower with raita.']},
+{id:'d17',c:'d',n:'Sheet-Pan Chicken Fajitas',cu:'Mexican',t:['high-protein','sheet-pan'],
+ d:'Chili-lime chicken roasted with colorful peppers and onion, tucked into warm corn tortillas with salsa.',p:15,k:20,nu:[470,16,95,8,38],
+ i:[[4.5,'oz','chicken breast, sliced','firm tofu or portobello'],[1,'','bell pepper, sliced',''],[0.5,'','onion, sliced',''],[1,'tbsp','olive oil',''],[1,'tsp','chili powder & cumin',''],[2,'','corn tortillas',''],[2,'tbsp','salsa',''],[0,'','lime and cilantro','']],
+ s:['Heat oven to 425°F (220°C).','Toss chicken, peppers and onion with oil and spices on a sheet pan.','Roast 18–20 minutes, stirring once, until chicken reaches 165°F (74°C).','Squeeze lime over and serve in warm tortillas with salsa and cilantro.']},
+{id:'d18',c:'d',n:'Croatian Grilled Fish with Swiss Chard & Potatoes',cu:'Croatian',t:['high-protein','omega-3'],
+ d:'Lemon-garlic grilled white fish with blitva — Dalmatian-style Swiss chard and potatoes in olive oil.',p:10,k:20,nu:[450,16,75,3,36],
+ i:[[5,'oz','white fish (sea bass or branzino)','cod or halibut'],[2,'cup','Swiss chard, chopped','spinach'],[4,'','small potatoes, quartered',''],[1,'tbsp','extra-virgin olive oil',''],[1,'clove','garlic, sliced',''],[0.5,'','lemon','']],
+ s:['Boil potatoes 10 minutes; add chard for the last 3 minutes. Drain.','Warm half the oil with garlic, add potatoes and chard and lightly crush together.','Brush fish with remaining oil, season and grill or pan-sear 3–4 minutes per side until it flakes.','Serve over the blitva with lemon.']},
+
+/* ---------------- SNACKS (more) ---------------- */
+{id:'s13',c:'s',n:'Chili-Lime Roasted Pepitas',cu:'Mexican',t:['vegan','high-protein'],
+ d:'Crunchy pumpkin seeds toasted with chili and lime — rich in magnesium and plant protein.',p:2,k:5,nu:[160,13,0,0,9],
+ i:[[1,'oz','raw pumpkin seeds (pepitas)','sunflower seeds'],[0.25,'tsp','chili powder',''],[0.5,'tsp','lime juice','']],
+ s:['Toast seeds in a dry skillet over medium 4–5 minutes, stirring, until they pop.','Toss with lime juice and chili powder; cool.']},
+{id:'s14',c:'s',n:'Tzatziki with Pita Wedges & Cucumber',cu:'Greek',t:['vegetarian'],
+ d:'Cool garlicky yogurt-cucumber dip with toasted whole-wheat pita wedges and cucumber rounds.',p:8,k:5,nu:[150,4,8,3,8],
+ i:[[0.25,'cup','plain Greek yogurt',''],[2,'tbsp','cucumber, grated & squeezed',''],[0.5,'clove','garlic, grated',''],[1,'tsp','fresh dill',''],[0.25,'','whole-wheat pita, cut in wedges','extra veggie sticks']],
+ s:['Stir yogurt, cucumber, garlic, dill and a squeeze of lemon.','Toast pita wedges at 400°F (200°C) 5 minutes until crisp.','Serve with the dip and cucumber rounds.']},
+{id:'s15',c:'s',n:'Nori Avocado & Cucumber Rolls',cu:'Japanese',t:['vegan','low-carb'],
+ d:'Rice-free hand rolls of nori wrapped around avocado, cucumber and a sprinkle of sesame.',p:5,k:0,nu:[110,8,0,1,3],
+ i:[[2,'','roasted nori sheets (snack size)',''],[0.25,'','avocado, sliced',''],[0.25,'','cucumber, cut in sticks',''],[0.5,'tsp','sesame seeds',''],[1,'tsp','low-sodium soy sauce','coconut aminos']],
+ s:['Lay avocado and cucumber on each nori sheet.','Sprinkle with sesame, roll up and dip lightly in soy sauce.']},
+{id:'s16',c:'s',n:'Smoked Salmon Cucumber Bites',cu:'Scandinavian',t:['pescatarian','omega-3','high-protein'],
+ d:'Crisp cucumber rounds topped with a dab of herbed yogurt, smoked salmon and dill.',p:8,k:0,nu:[110,5,15,1,11],
+ i:[[0.5,'','cucumber, thick rounds',''],[1.5,'oz','smoked salmon',''],[2,'tbsp','plain Greek yogurt with lemon zest','light cream cheese'],[0,'','fresh dill','chives']],
+ s:['Spread a little yogurt on each cucumber round.','Top with a fold of smoked salmon and a sprig of dill.']},
+{id:'s17',c:'s',n:'Turkey & Veggie Roll-Ups',cu:'American',t:['high-protein','low-carb'],
+ d:'Lean turkey slices rolled around hummus, bell pepper and spinach — a quick protein snack.',p:5,k:0,nu:[120,4,35,2,15],
+ i:[[2,'oz','low-sodium roasted turkey breast',''],[1,'tbsp','hummus',''],[0.25,'','bell pepper, thin strips',''],[0.25,'cup','baby spinach','']],
+ s:['Spread hummus on each turkey slice.','Add spinach and pepper strips, roll up and secure with a toothpick.']},
+{id:'s18',c:'s',n:'Chili-Lime Mango & Almonds',cu:'Mexican',t:['vegan','no-cook'],
+ d:'Juicy mango spears dusted with chili-lime seasoning, paired with a few almonds for staying power.',p:4,k:0,nu:[150,7,0,14,4],
+ i:[[0.5,'cup','mango spears','pineapple or jicama'],[0,'','pinch of chili-lime seasoning',''],[10,'','almonds','pumpkin seeds']],
+ s:['Cut mango into spears and sprinkle with chili-lime seasoning and a squeeze of lime.','Serve with almonds.']},
+
+/* ---------------- LUNCH ---------------- */
+{id:'l1',c:'l',n:'Greek Chickpea Salad',cu:'Greek',t:['vegetarian','high-fiber','no-cook'],
+ d:'Crisp cucumber, tomato and chickpeas tossed with olives, feta and a bright oregano–red wine vinaigrette.',p:15,k:0,nu:[420,21,17,8,16],
+ i:[[0.75,'cup','chickpeas, rinsed','cannellini beans'],[0.5,'','cucumber, diced',''],[0.5,'cup','cherry tomatoes, halved',''],[2,'tbsp','red onion, diced',''],[5,'','kalamata olives',''],[2,'tbsp','crumbled feta','omit for dairy-free'],[1,'tbsp','extra-virgin olive oil',''],[1,'tbsp','red wine vinegar','lemon juice'],[0.25,'tsp','dried oregano','']],
+ s:['Whisk the olive oil, vinegar, oregano and a pinch of pepper.','Combine chickpeas, cucumber, tomatoes, onion and olives in a bowl.','Toss with the dressing and top with feta.','Let sit 10 minutes so the flavors meld. Keeps 2 days refrigerated.']},
+{id:'l2',c:'l',n:'Hearty Lentil & Vegetable Soup',cu:'Mediterranean',t:['vegan','high-fiber','meal-prep'],
+ d:'A cumin-scented soup of lentils, carrots, celery, tomatoes and spinach — plant protein and fiber in every spoonful.',p:15,k:35,nu:[330,6,0,9,18],
+ i:[[1,'tsp','olive oil',''],[0.25,'','onion, diced',''],[0.5,'','carrot, diced',''],[0.5,'stalk','celery, diced',''],[1,'clove','garlic, minced',''],[0.33,'cup','dry brown or green lentils, rinsed','red lentils (cook 15 min)'],[0.5,'cup','diced tomatoes (no salt added)',''],[1.5,'cup','low-sodium vegetable broth',''],[0.5,'tsp','ground cumin',''],[1,'cup','spinach','kale'],[1,'tsp','lemon juice','']],
+ s:['Heat the oil in a pot over medium. Cook onion, carrot and celery 6 minutes.','Add garlic and cumin; cook 30 seconds.','Add lentils, tomatoes and broth. Bring to a boil, then cover and simmer 25–30 minutes until the lentils are tender.','Stir in spinach until wilted and finish with lemon juice and black pepper.','Freezes well for up to 3 months.']},
+{id:'l3',c:'l',n:'Chicken & Quinoa Tabbouleh Bowl',cu:'Lebanese',t:['high-protein','gluten-free'],
+ d:'Herby quinoa tabbouleh with parsley, mint, tomato and cucumber, topped with lemon-oregano grilled chicken.',p:15,k:15,nu:[450,15,95,4,40],
+ i:[[4,'oz','boneless skinless chicken breast','firm tofu or chickpeas'],[0.5,'cup','cooked quinoa','bulgur wheat'],[0.5,'cup','fresh parsley, chopped',''],[1,'tbsp','fresh mint, chopped',''],[0.5,'cup','tomato, diced',''],[0.5,'','cucumber, diced',''],[1,'tbsp','lemon juice',''],[2,'tsp','extra-virgin olive oil',''],[0.25,'tsp','dried oregano','']],
+ s:['Season the chicken with oregano, pepper and a little lemon juice.','Grill or pan-sear over medium-high 5–7 minutes per side until it reaches 165°F (74°C) inside. Rest 5 minutes, then slice.','Toss quinoa, parsley, mint, tomato and cucumber with the remaining lemon juice and olive oil.','Top the tabbouleh with the sliced chicken.']},
+{id:'l4',c:'l',n:'Tuna & White Bean Arugula Salad',cu:'Italian',t:['high-protein','omega-3','no-cook'],
+ d:'Tuscan-style tuna and creamy cannellini beans over peppery arugula with lemon, capers and olive oil.',p:10,k:0,nu:[380,15,35,4,33],
+ i:[[3,'oz','tuna in water, drained','canned salmon or sardines'],[0.5,'cup','cannellini beans, rinsed','chickpeas'],[2,'cup','arugula','mixed greens'],[0.5,'cup','cherry tomatoes',''],[1,'tbsp','red onion, thinly sliced',''],[1,'tsp','capers',''],[1,'tbsp','extra-virgin olive oil',''],[1,'tbsp','lemon juice','']],
+ s:['Whisk the olive oil, lemon juice and black pepper.','Gently mix tuna, beans, onion and capers with half the dressing.','Arrange arugula and tomatoes on a plate, top with the tuna mixture and drizzle with the remaining dressing.']},
+{id:'l5',c:'l',n:'Hummus & Roasted Pepper Pita Pocket',cu:'Mediterranean',t:['vegetarian','quick'],
+ d:'A whole-wheat pita stuffed with creamy hummus, roasted red peppers, crunchy cucumber, spinach and feta.',p:8,k:0,nu:[390,15,17,5,15],
+ i:[[1,'','whole-wheat pita','whole-grain wrap'],[0.25,'cup','hummus',''],[0.25,'cup','roasted red peppers, sliced',''],[0.5,'','cucumber, sliced',''],[0.5,'cup','baby spinach',''],[2,'tbsp','crumbled feta',''],[0,'','squeeze of lemon and pinch of za’atar','']],
+ s:['Warm the pita briefly and cut open the pocket.','Spread the hummus inside.','Fill with spinach, cucumber, peppers and feta.','Finish with lemon and za’atar.']},
+{id:'l6',c:'l',n:'Salmon Niçoise Salad',cu:'French',t:['omega-3','high-protein'],
+ d:'A classic French composed salad with salmon, egg, green beans, baby potatoes and olives in a Dijon vinaigrette.',p:15,k:15,nu:[470,22,245,5,34],
+ i:[[3.5,'oz','salmon fillet (or canned salmon)',''],[1,'','large egg',''],[0.75,'cup','green beans, trimmed',''],[3,'','baby potatoes, halved',''],[2,'cup','mixed greens',''],[5,'','niçoise or kalamata olives',''],[2,'tsp','extra-virgin olive oil',''],[1,'tsp','Dijon mustard',''],[2,'tsp','red wine vinegar','']],
+ s:['Boil potatoes 10–12 minutes until tender, adding green beans for the last 3 minutes. Drain and cool.','Boil the egg 10 minutes, cool in ice water, peel and quarter.','Bake salmon at 400°F (200°C) 10–12 minutes, or use canned salmon.','Whisk the olive oil, Dijon and vinegar.','Arrange greens, potatoes, beans, egg, olives and salmon; drizzle with dressing.']},
+{id:'l7',c:'l',n:'Turkey, Avocado & Hummus Lettuce Wraps',cu:'American',t:['high-protein','low-carb','no-cook'],
+ d:'Crisp butter-lettuce cups wrapped around lean turkey, avocado, hummus and crunchy veggies, with fruit on the side.',p:10,k:0,nu:[320,14,45,9,26],
+ i:[[3,'oz','sliced roasted turkey breast (low-sodium)','grilled chicken'],[0.25,'','avocado, sliced',''],[4,'leaves','butter lettuce',''],[2,'tbsp','hummus',''],[0.25,'cup','shredded carrot',''],[0.25,'','tomato, sliced',''],[0.5,'cup','grapes','1 small apple']],
+ s:['Wash and dry the lettuce leaves.','Spread hummus on each leaf.','Layer turkey, avocado, carrot and tomato.','Roll up and enjoy with fruit on the side.']},
+{id:'l8',c:'l',n:'Tuscan Minestrone with Farro',cu:'Italian',t:['vegetarian','high-fiber','meal-prep'],
+ d:'A rustic vegetable soup with nutty farro, cannellini beans and kale, finished with a little parmesan.',p:15,k:35,nu:[350,7,4,8,13],
+ i:[[1,'tsp','olive oil',''],[0.25,'','onion, diced',''],[0.5,'','carrot, diced',''],[0.5,'','zucchini, diced',''],[1,'clove','garlic, minced',''],[0.5,'cup','diced tomatoes',''],[1.5,'cup','low-sodium vegetable broth',''],[2,'tbsp','farro (uncooked)','small whole-wheat pasta'],[0.33,'cup','cannellini beans',''],[1,'cup','kale, chopped','spinach'],[1,'tbsp','grated parmesan','']],
+ s:['Sauté onion and carrot in the oil 5 minutes. Add garlic and cook 30 seconds.','Add tomatoes, broth and farro; cover and simmer 20 minutes.','Add zucchini and beans; simmer 8 minutes more.','Stir in kale until tender, about 2 minutes.','Serve topped with parmesan.']},
+{id:'l9',c:'l',n:'Lemon-Herb Shrimp & Farro Salad',cu:'Mediterranean',t:['high-protein','pescatarian'],
+ d:'Garlicky seared shrimp over chewy farro, arugula, tomato and cucumber with a fresh lemon-dill dressing.',p:15,k:10,nu:[430,16,190,4,32],
+ i:[[4,'oz','shrimp, peeled & deveined',''],[0.5,'cup','cooked farro','quinoa or brown rice'],[1.5,'cup','arugula',''],[0.5,'cup','cherry tomatoes',''],[0.5,'','cucumber, diced',''],[1,'tbsp','extra-virgin olive oil',''],[1,'tbsp','lemon juice',''],[1,'tbsp','fresh dill or parsley',''],[1,'clove','garlic, minced','']],
+ s:['Toss shrimp with half the oil, the garlic and pepper.','Sear in a hot skillet 1–2 minutes per side until pink and opaque.','Whisk the remaining oil with the lemon juice and herbs.','Combine farro, arugula, tomatoes and cucumber; top with shrimp and dressing.']},
+{id:'l10',c:'l',n:'Black Bean & Sweet Potato Bowl',cu:'Mexican',t:['vegan','high-fiber'],
+ d:'Chili-roasted sweet potato with black beans, brown rice, salsa and avocado — fiber-packed and satisfying.',p:10,k:25,nu:[450,10,0,9,15],
+ i:[[0.5,'','medium sweet potato, cubed',''],[1,'tsp','olive oil',''],[0.5,'tsp','chili powder',''],[0.5,'cup','black beans, rinsed','pinto beans'],[0.33,'cup','cooked brown rice','quinoa or cauliflower rice'],[0.25,'cup','salsa',''],[0.25,'','avocado',''],[0,'','lime wedge and cilantro','']],
+ s:['Heat oven to 425°F (220°C). Toss sweet potato with oil and chili powder; roast 22–25 minutes, flipping once.','Warm the beans with a pinch of cumin.','Build the bowl: rice, beans, sweet potato, salsa and avocado.','Squeeze lime over the top and add cilantro.']},
+{id:'l11',c:'l',n:'Spanish Gazpacho with Shrimp',cu:'Spanish',t:['pescatarian','no-cook'],
+ d:'Chilled blended tomato, cucumber and pepper soup topped with poached shrimp and served with whole-grain bread.',p:15,k:3,nu:[340,12,145,10,24],
+ i:[[1.5,'cup','ripe tomatoes, chopped','canned whole tomatoes (no salt added)'],[0.5,'','cucumber, peeled',''],[0.25,'','red bell pepper',''],[1,'clove','garlic',''],[2,'tsp','sherry vinegar','red wine vinegar'],[2,'tsp','extra-virgin olive oil',''],[3,'oz','cooked shrimp','chickpeas for vegetarian'],[1,'slice','whole-grain bread','']],
+ s:['Blend tomatoes, cucumber, pepper, garlic, vinegar and olive oil until smooth.','Season with pepper and chill at least 30 minutes.','Poach shrimp in simmering water 2–3 minutes if raw, then chill.','Ladle gazpacho into bowls, top with shrimp and serve with bread.']},
+{id:'l12',c:'l',n:'Falafel-Spiced Chickpea Wrap with Tahini',cu:'Middle Eastern',t:['vegan','high-fiber'],
+ d:'Smashed chickpeas seasoned like falafel, wrapped with crisp veggies and a creamy lemon-tahini drizzle.',p:12,k:0,nu:[430,17,0,6,15],
+ i:[[0.75,'cup','chickpeas, rinsed',''],[0.5,'tsp','ground cumin',''],[0.25,'tsp','ground coriander',''],[1,'tbsp','tahini','hummus'],[1,'tbsp','lemon juice',''],[1,'','whole-wheat tortilla',''],[0.5,'cup','shredded lettuce',''],[0.25,'','tomato, diced',''],[2,'tbsp','pickled red onion','fresh red onion']],
+ s:['Mash the chickpeas roughly with cumin, coriander, half the lemon juice and pepper.','Whisk tahini with remaining lemon juice and 1–2 tbsp water until drizzly.','Fill tortilla with lettuce, chickpea mixture, tomato and onion.','Drizzle with tahini sauce, roll up tightly and slice.']},
+
+/* ---------------- DINNER ---------------- */
+{id:'d1',c:'d',n:'Lemon-Dill Baked Salmon with Asparagus & Quinoa',cu:'Mediterranean',t:['omega-3','gluten-free','sheet-pan'],
+ d:'Tender oven-baked salmon and asparagus with garlic, lemon and dill, served over fluffy quinoa.',p:10,k:15,nu:[520,26,80,3,40],
+ i:[[5,'oz','salmon fillet','arctic char or trout'],[1,'cup','asparagus, trimmed','green beans'],[1,'tbsp','extra-virgin olive oil',''],[0.5,'','lemon (juice + slices)',''],[1,'clove','garlic, minced',''],[1,'tsp','fresh dill','1/4 tsp dried dill'],[0.5,'cup','cooked quinoa','farro or brown rice']],
+ s:['Heat oven to 400°F (200°C) and line a sheet pan.','Place salmon and asparagus on the pan; drizzle with oil, garlic, lemon juice and pepper.','Top salmon with lemon slices and dill.','Roast 12–15 minutes until salmon flakes easily (145°F / 63°C).','Serve over quinoa.']},
+{id:'d2',c:'d',n:'Chicken Souvlaki with Tzatziki & Greek Salad',cu:'Greek',t:['high-protein','grill'],
+ d:'Lemon-garlic-oregano chicken skewers with cool cucumber tzatziki and a crisp Greek salad.',p:15,k:12,nu:[480,20,120,7,45],
+ i:[[5,'oz','chicken breast, cubed','shrimp or firm tofu'],[1,'tbsp','extra-virgin olive oil',''],[1,'tbsp','lemon juice',''],[1,'clove','garlic, minced',''],[0.5,'tsp','dried oregano',''],[0.25,'cup','tzatziki (Greek yogurt, grated cucumber, dill)',''],[1,'cup','romaine, chopped',''],[0.5,'cup','tomato & cucumber, diced',''],[1,'tbsp','crumbled feta','']],
+ s:['Mix 2 tsp of the oil with lemon, garlic and oregano; marinate the chicken at least 30 minutes (up to 8 hours).','Thread onto skewers (soak wooden skewers 20 minutes first).','Grill or broil 10–12 minutes, turning, until the chicken reaches 165°F (74°C).','Toss romaine, tomato, cucumber and feta with the remaining oil and a splash of vinegar.','Serve skewers with the salad and tzatziki.']},
+{id:'d3',c:'d',n:'Ginger-Garlic Shrimp Stir-Fry with Brown Rice',cu:'Asian',t:['high-protein','quick'],
+ d:'Quick-seared shrimp with broccoli, snap peas and bell pepper in a light ginger-garlic sauce over brown rice.',p:15,k:10,nu:[460,11,230,7,35],
+ i:[[5,'oz','shrimp, peeled','chicken breast strips'],[1,'cup','broccoli florets',''],[0.5,'cup','snap peas',''],[0.5,'','red bell pepper, sliced',''],[1,'tsp','fresh ginger, grated',''],[1,'clove','garlic, minced',''],[1,'tbsp','low-sodium soy sauce','coconut aminos'],[2,'tsp','sesame or avocado oil',''],[0.5,'cup','cooked brown rice','cauliflower rice']],
+ s:['Heat 1 tsp oil in a large skillet or wok over high. Sear shrimp 1–2 minutes per side; remove.','Add remaining oil, then broccoli, snap peas and pepper. Stir-fry 3–4 minutes until crisp-tender (add a splash of water if needed).','Add ginger and garlic; stir 30 seconds.','Return shrimp, add soy sauce and toss to coat.','Serve over brown rice.']},
+{id:'d4',c:'d',n:'Turkey & Brown Rice Stuffed Peppers',cu:'American',t:['high-protein','meal-prep'],
+ d:'Sweet bell peppers filled with lean seasoned turkey, brown rice and tomato, baked until tender.',p:15,k:35,nu:[430,14,90,9,32],
+ i:[[4,'oz','93% lean ground turkey','lentils for vegetarian'],[1,'','large bell pepper, halved & seeded',''],[0.33,'cup','cooked brown rice','quinoa'],[0.33,'cup','tomato sauce (no salt added)',''],[0.25,'','onion, diced',''],[1,'clove','garlic',''],[0.5,'tsp','Italian seasoning',''],[1,'tbsp','grated parmesan','part-skim mozzarella'],[1,'tsp','olive oil','']],
+ s:['Heat oven to 375°F (190°C).','Cook onion in oil 3 minutes, add turkey and garlic and cook 6–7 minutes until browned.','Stir in rice, half the tomato sauce and Italian seasoning.','Fill pepper halves, place in a baking dish and top with remaining sauce.','Cover with foil and bake 25 minutes; uncover, add parmesan and bake 10 minutes more.']},
+{id:'d5',c:'d',n:'Mediterranean Cod with Tomatoes, Olives & White Beans',cu:'Mediterranean',t:['high-protein','one-pan'],
+ d:'Flaky cod simmered in a garlicky cherry tomato, olive and caper sauce with creamy white beans.',p:10,k:18,nu:[420,15,70,5,38],
+ i:[[5,'oz','cod fillet','halibut or haddock'],[1,'cup','cherry tomatoes, halved',''],[5,'','kalamata olives, halved',''],[1,'tsp','capers',''],[1,'clove','garlic, sliced',''],[1,'tbsp','extra-virgin olive oil',''],[0.5,'cup','cannellini beans, rinsed',''],[1,'tbsp','fresh basil or parsley','']],
+ s:['Heat oil in a skillet over medium. Add garlic and cook 1 minute.','Add tomatoes and cook 4–5 minutes until they begin to burst.','Stir in olives, capers and beans; season with pepper.','Nestle cod into the sauce, cover and simmer 8–10 minutes until it flakes (145°F / 63°C).','Top with fresh herbs.']},
+{id:'d6',c:'d',n:'Whole-Wheat Pasta Primavera with White Beans',cu:'Italian',t:['vegetarian','high-fiber'],
+ d:'Whole-wheat pasta tossed with zucchini, cherry tomatoes, spinach and white beans in garlic olive oil.',p:10,k:15,nu:[520,17,10,7,22],
+ i:[[2,'oz','whole-wheat pasta (dry)','chickpea or lentil pasta'],[0.5,'','zucchini, sliced',''],[0.75,'cup','cherry tomatoes',''],[1,'cup','spinach',''],[0.33,'cup','cannellini beans',''],[1,'clove','garlic',''],[1,'tbsp','extra-virgin olive oil',''],[2,'tbsp','grated parmesan',''],[0,'','pinch of red pepper flakes','']],
+ s:['Cook pasta according to package directions; reserve 1/4 cup pasta water.','Meanwhile heat oil, add garlic and zucchini and cook 4 minutes.','Add tomatoes and cook 3 minutes; stir in beans and spinach until wilted.','Toss in pasta with a splash of pasta water.','Finish with parmesan and red pepper flakes.']},
+{id:'d7',c:'d',n:'Moroccan Chickpea & Vegetable Tagine',cu:'Moroccan',t:['vegan','high-fiber'],
+ d:'A fragrant stew of chickpeas, carrots, squash and apricots warmed with cinnamon, cumin and ginger, over couscous.',p:15,k:30,nu:[480,12,0,14,16],
+ i:[[1,'tsp','olive oil',''],[0.25,'','onion, diced',''],[0.5,'','carrot, sliced',''],[0.5,'cup','butternut squash, cubed','sweet potato'],[0.5,'cup','chickpeas',''],[0.5,'cup','diced tomatoes',''],[2,'','dried apricots, chopped','raisins'],[0.5,'tsp','each cumin & ground ginger',''],[0.25,'tsp','cinnamon',''],[0.75,'cup','low-sodium vegetable broth',''],[0.33,'cup','cooked whole-wheat couscous','quinoa']],
+ s:['Heat oil in a pot and cook onion and carrot 5 minutes.','Add spices and stir 30 seconds.','Add squash, chickpeas, tomatoes, apricots and broth. Simmer covered 20–25 minutes until vegetables are tender.','Serve over couscous with fresh cilantro.']},
+{id:'d8',c:'d',n:'Herb-Roasted Chicken Thighs with Root Vegetables',cu:'French',t:['high-protein','sheet-pan'],
+ d:'Rosemary-garlic roasted chicken thighs with caramelized carrots, parsnips and red onion on one pan.',p:15,k:35,nu:[500,20,130,9,33],
+ i:[[4,'oz','boneless skinless chicken thighs','chicken breast (reduce cook time)'],[0.5,'','carrot, chunked',''],[0.5,'','parsnip, chunked','sweet potato'],[0.25,'','red onion, wedges',''],[3,'','small potatoes, halved',''],[1,'tbsp','extra-virgin olive oil',''],[1,'tsp','fresh rosemary or thyme',''],[1,'clove','garlic, minced','']],
+ s:['Heat oven to 425°F (220°C).','Toss vegetables with half the oil and pepper; spread on a sheet pan and roast 15 minutes.','Rub chicken with remaining oil, garlic and herbs.','Add chicken to the pan and roast 20 minutes more until it reaches 175°F (80°C) and vegetables are golden.']},
+{id:'d9',c:'d',n:'Grilled Sirloin with Farro & Arugula Salad',cu:'Italian',t:['high-protein','grill'],
+ d:'Lean grilled sirloin sliced over a lemony farro, arugula and shaved parmesan salad.',p:15,k:15,nu:[510,19,85,4,40],
+ i:[[4,'oz','lean sirloin steak','flank steak or chicken'],[0.5,'cup','cooked farro',''],[2,'cup','arugula',''],[0.5,'cup','cherry tomatoes',''],[1,'tbsp','shaved parmesan',''],[1,'tbsp','extra-virgin olive oil',''],[1,'tbsp','lemon juice',''],[0,'','black pepper','']],
+ s:['Season steak with pepper; let rest at room temperature 15 minutes.','Grill or sear over high heat 4–5 minutes per side for medium (145°F / 63°C).','Rest 5 minutes and slice thinly against the grain.','Toss farro, arugula and tomatoes with oil and lemon; top with steak and parmesan.']},
+{id:'d10',c:'d',n:'Lighter Eggplant & Lentil Moussaka',cu:'Greek',t:['vegetarian','high-fiber','meal-prep'],
+ d:'Layers of roasted eggplant and a cinnamon-spiced lentil-tomato filling, topped with a light yogurt-parmesan crust.',p:20,k:45,nu:[450,14,25,12,22],
+ i:[[0.5,'','medium eggplant, sliced',''],[1,'tbsp','olive oil',''],[0.33,'cup','cooked lentils',''],[0.5,'cup','crushed tomatoes',''],[0.25,'','onion, diced',''],[0.25,'tsp','cinnamon',''],[0.33,'cup','plain Greek yogurt',''],[0.5,'','egg, beaten',''],[2,'tbsp','grated parmesan','']],
+ s:['Heat oven to 400°F (200°C). Brush eggplant with half the oil and roast 20 minutes.','Cook onion in remaining oil 5 minutes; add lentils, tomatoes and cinnamon and simmer 10 minutes.','Whisk yogurt, egg and half the parmesan.','Layer eggplant and lentil sauce in a small baking dish; spread yogurt topping over and sprinkle with remaining parmesan.','Bake at 375°F (190°C) 25 minutes until golden. Rest 10 minutes before slicing.']},
+{id:'d11',c:'d',n:'Pesto Zucchini Noodles with Grilled Shrimp',cu:'Italian',t:['low-carb','high-protein','quick'],
+ d:'Spiralized zucchini tossed with basil pesto, cherry tomatoes and garlicky shrimp, plus a little whole-wheat pasta for heartiness.',p:15,k:10,nu:[440,22,190,6,33],
+ i:[[4,'oz','shrimp, peeled',''],[1.5,'','medium zucchini, spiralized',''],[1,'oz','whole-wheat spaghetti (dry)','omit for low-carb'],[1.5,'tbsp','basil pesto',''],[0.5,'cup','cherry tomatoes',''],[1,'tsp','olive oil',''],[1,'clove','garlic','']],
+ s:['Cook the spaghetti per package directions.','Sear shrimp in oil with garlic 1–2 minutes per side; remove.','Add zucchini noodles to the pan and sauté 2 minutes until just tender (don’t overcook).','Toss noodles, pasta, tomatoes and pesto; top with shrimp.']},
+{id:'d12',c:'d',n:'Sheet-Pan Chicken Shawarma with Veggies',cu:'Middle Eastern',t:['high-protein','sheet-pan'],
+ d:'Warmly spiced chicken roasted with cauliflower and red onion, served with yogurt-tahini sauce and a small pita.',p:15,k:25,nu:[490,19,110,7,42],
+ i:[[5,'oz','chicken breast or thigh strips',''],[1,'cup','cauliflower florets',''],[0.25,'','red onion, wedges',''],[1,'tbsp','olive oil',''],[1,'tsp','shawarma spice (cumin, paprika, turmeric, cinnamon)',''],[2,'tbsp','plain Greek yogurt',''],[1,'tsp','tahini',''],[0.5,'','whole-wheat pita','brown rice']],
+ s:['Heat oven to 425°F (220°C).','Toss chicken, cauliflower and onion with oil and spices on a sheet pan.','Roast 22–25 minutes until chicken reaches 165°F (74°C) and cauliflower is browned.','Whisk yogurt, tahini and a squeeze of lemon for the sauce.','Serve with warm pita and the sauce.']},
+
+/* ---------------- SNACKS ---------------- */
+{id:'s1',c:'s',n:'Apple Slices with Almond Butter',cu:'American',t:['vegan','no-cook','quick'],
+ d:'Crisp apple wedges with a tablespoon of almond butter and a dash of cinnamon — fiber plus healthy fat.',p:3,k:0,nu:[190,9,0,19,4],
+ i:[[1,'','small apple, sliced','pear'],[1,'tbsp','almond butter','peanut butter'],[0,'','pinch of cinnamon','']],
+ s:['Core and slice the apple.','Serve with almond butter for dipping and sprinkle with cinnamon.']},
+{id:'s2',c:'s',n:'Hummus & Rainbow Veggie Sticks',cu:'Mediterranean',t:['vegan','no-cook'],
+ d:'Creamy hummus with crunchy carrots, cucumber and bell pepper strips.',p:5,k:0,nu:[160,9,0,5,5],
+ i:[[0.25,'cup','hummus','white bean dip'],[1,'','carrot, cut into sticks',''],[0.5,'','cucumber, sticks',''],[0.5,'','bell pepper, strips','snap peas']],
+ s:['Cut the vegetables into sticks.','Serve with hummus. Pre-cut veggies keep 4 days in a container with a damp paper towel.']},
+{id:'s3',c:'s',n:'Mixed Nuts Handful',cu:'Mediterranean',t:['vegan','heart-healthy','no-cook'],
+ d:'A portion-controlled ounce of unsalted almonds and walnuts — linked to better heart health.',p:1,k:0,nu:[170,15,0,1,5],
+ i:[[1,'oz','unsalted almonds & walnuts (about 1/4 cup)','pistachios or cashews']],
+ s:['Measure 1 oz into a small bowl (about a small handful).','Tip: pre-portion a week’s worth into small containers.']},
+{id:'s4',c:'s',n:'Greek Yogurt with Honey & Cinnamon',cu:'Greek',t:['vegetarian','high-protein','no-cook'],
+ d:'Thick, tangy Greek yogurt with a drizzle of honey and warm cinnamon.',p:2,k:0,nu:[150,4,10,11,15],
+ i:[[0.67,'cup','plain 2% Greek yogurt','skyr'],[1,'tsp','honey',''],[0,'','pinch of cinnamon','']],
+ s:['Spoon yogurt into a bowl, drizzle with honey and dust with cinnamon.']},
+{id:'s5',c:'s',n:'Crispy Spiced Roasted Chickpeas',cu:'Middle Eastern',t:['vegan','high-fiber'],
+ d:'Oven-crisped chickpeas tossed with olive oil, smoked paprika and cumin — a crunchy chip alternative.',p:5,k:30,nu:[140,6,0,2,5],
+ i:[[0.33,'cup','chickpeas, rinsed & patted dry',''],[1,'tsp','olive oil',''],[0.25,'tsp','smoked paprika',''],[0.25,'tsp','ground cumin','']],
+ s:['Heat oven to 400°F (200°C).','Dry chickpeas thoroughly with a towel, removing loose skins.','Toss with oil and spices and spread on a sheet pan.','Roast 25–30 minutes, shaking halfway, until crisp. Cool before storing.']},
+{id:'s6',c:'s',n:'Cottage Cheese with Tomatoes & Basil',cu:'Italian',t:['vegetarian','high-protein','no-cook'],
+ d:'Savory cottage cheese topped with juicy cherry tomatoes, fresh basil and cracked pepper.',p:3,k:0,nu:[120,3,10,6,14],
+ i:[[0.5,'cup','low-fat cottage cheese',''],[0.5,'cup','cherry tomatoes, halved',''],[0,'','fresh basil and black pepper','']],
+ s:['Top cottage cheese with tomatoes, torn basil and pepper.']},
+{id:'s7',c:'s',n:'Steamed Edamame with Sea Salt',cu:'Japanese',t:['vegan','high-protein'],
+ d:'Warm edamame sprinkled with a pinch of flaky salt — a plant-protein powerhouse.',p:1,k:5,nu:[140,6,0,2,13],
+ i:[[0.75,'cup','shelled edamame (frozen)','in-pod edamame, 1.5 cups'],[0,'','pinch of flaky sea salt','chili flakes']],
+ s:['Microwave or boil edamame 4–5 minutes until hot.','Drain and sprinkle lightly with salt.']},
+{id:'s8',c:'s',n:'Dark Chocolate & Strawberries',cu:'European',t:['vegetarian','treat'],
+ d:'A square of 70% dark chocolate with fresh strawberries — a satisfying, antioxidant-rich treat.',p:2,k:0,nu:[110,6,1,8,2],
+ i:[[0.5,'oz','70%+ dark chocolate',''],[0.5,'cup','strawberries','raspberries']],
+ s:['Rinse the berries and serve with the chocolate. Slowly savor it.']},
+{id:'s9',c:'s',n:'Hard-Boiled Egg with Olives & Cucumber',cu:'Mediterranean',t:['vegetarian','high-protein'],
+ d:'A protein-rich hard-boiled egg with briny olives and cool cucumber slices.',p:3,k:12,nu:[120,9,186,1,7],
+ i:[[1,'','large egg',''],[6,'','green or kalamata olives',''],[0.5,'','cucumber, sliced','']],
+ s:['Cover the egg with cold water, bring to a boil, cover, turn off heat and let sit 10–12 minutes.','Cool in ice water and peel.','Serve with olives and cucumber. Boiled eggs keep 1 week refrigerated in the shell.']},
+{id:'s10',c:'s',n:'Pear & Part-Skim Mozzarella Stick',cu:'Italian',t:['vegetarian','no-cook','portable'],
+ d:'A juicy pear paired with a part-skim cheese stick — a balanced grab-and-go snack.',p:1,k:0,nu:[170,6,15,14,8],
+ i:[[1,'','small pear','apple'],[1,'','part-skim mozzarella string cheese','1 oz aged cheddar']],
+ s:['Slice the pear and enjoy with the cheese stick.']},
+{id:'s11',c:'s',n:'Whole-Grain Crackers with Smashed Avocado',cu:'Mexican',t:['vegan','quick'],
+ d:'Crunchy whole-grain crackers topped with lime-smashed avocado and chili flakes.',p:4,k:0,nu:[170,10,0,1,3],
+ i:[[6,'','whole-grain crackers','rice cakes'],[0.25,'','avocado',''],[1,'tsp','lime juice',''],[0,'','chili flakes','']],
+ s:['Mash avocado with lime juice.','Spread on crackers and sprinkle with chili flakes.']},
+{id:'s12',c:'s',n:'Frozen Yogurt-Berry Bark',cu:'American',t:['vegetarian','make-ahead','treat'],
+ d:'Greek yogurt spread thin, dotted with berries and pistachios, then frozen and snapped into pieces.',p:10,k:0,nu:[130,5,8,11,9],
+ i:[[0.5,'cup','plain Greek yogurt',''],[0.5,'tsp','honey',''],[0.25,'cup','mixed berries',''],[1,'tsp','chopped pistachios','']],
+ s:['Stir honey into yogurt and spread 1/4 inch thick on a parchment-lined tray.','Scatter berries and pistachios over the top.','Freeze 2 hours until firm, then break into pieces. Keep frozen up to 1 month.']}
+];
+const LIBMAP = Object.fromEntries(LIB.map(m=>[m.id,m]));
+
+/* ---------- Constants ---------- */
+const CATS = {b:{name:'Breakfast',ic:'☀️'},l:{name:'Lunch',ic:'🥗'},d:{name:'Dinner',ic:'🍽️'},s:{name:'Snacks',ic:'🍎'}};
+const WHO = {f:{name:'Female',port:[['Her',1]]},m:{name:'Male',port:[['His',1.3]]},c:{name:'Couple',port:[['Her',1],['His',1.3]]}};
+const SCALE = {f:1,m:1.3,c:2.3};
+const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+const NUTL = [['Calories',''],['Fat','g'],['Cholesterol','mg'],['Sugar','g'],['Protein','g']];
+
+/* ---------- Safe storage (only favorites, settings & a small history are kept) ---------- */
+const store = {
+  get(k,d){try{const v=localStorage.getItem('en_'+k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem('en_'+k,JSON.stringify(v))}catch(e){}},
+  del(k){try{localStorage.removeItem('en_'+k)}catch(e){}}
+};
+const S = Object.assign({who:'f',mode:'daily',online:true,key:'',nkey:'',ex:[],exText:''},store.get('settings',{}));
+function saveS(){store.set('settings',S)}
+let FAVS = store.get('favs',[]);          // [{id,cat,meal?}]
+let HIST = store.get('hist',{b:[],l:[],d:[],s:[]}); // recently shown ids per category
+
+/* ---------- Lightweight in-memory cache (auto-trimmed) ---------- */
+const CACHE = new Map(); const LISTS = new Map();
+const CACHE_MAX = 40;
+function cachePut(m){CACHE.delete(m.id);CACHE.set(m.id,m);while(CACHE.size>CACHE_MAX){CACHE.delete(CACHE.keys().next().value)}}
+function clearCache(){CACHE.clear();LISTS.clear()}
+function getMeal(id){return LIBMAP[id]||CACHE.get(id)||(FAVS.find(f=>f.id===id)||{}).meal||null}
+
+/* ---------- Helpers ---------- */
+const $ = s=>document.querySelector(s);
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove('show'),1800)}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function pushHist(cat,ids){const h=HIST[cat]||[];ids.forEach(id=>{const i=h.indexOf(id);if(i>-1)h.splice(i,1);h.push(id)});HIST[cat]=h.slice(-15);store.set('hist',HIST)}
+function isFav(id){return FAVS.some(f=>f.id===id)}
+
+function fmtQty(q,unit){
+  if(!q) return '';
+  if(['clove','slice','stalk','leaves'].includes(unit)) q=Math.max(1,Math.round(q));
+  if(unit==='oz') q=Math.round(q*2)/2;
+  if(unit===''&&q>=1.5) q=Math.round(q); else if(unit===''&&q>=1) q=Math.round(q*2)/2;
+  let w=Math.floor(q), f=q-w;
+  const opts=[[0,''],[0.25,'¼'],[1/3,'⅓'],[0.5,'½'],[2/3,'⅔'],[0.75,'¾'],[1,'']];
+  let best=opts[0];for(const o of opts){if(Math.abs(o[0]-f)<Math.abs(best[0]-f))best=o}
+  if(best[0]===1){w+=1;best=[0,'']}
+  if(w===0&&!best[1]) best=[0.25,'¼'];
+  const txt=(w?w:'')+best[1];
+  const val=w+best[0];
+  let u=unit;
+  if(u&&val>1&&['cup','slice','clove','stalk'].includes(u)) u+='s';
+  return txt+(u?' '+u:'');
+}
+function nutFor(m,mult){return m.nu?m.nu.map(v=>v==null?null:Math.round(v*mult)):null}
+function nutHTML(m){
+  if(!m.nu) return '<div class="na">Nutrition not provided by this online source. Add a free Spoonacular key in Settings to get nutrition for online recipes.</div>';
+  return WHO[S.who].port.map(([lab,mult])=>{
+    const n=nutFor(m,mult);
+    return `${S.who==='c'?`<div class="who">${lab} serving</div>`:''}<div class="nut">${NUTL.map((l,i)=>`<div><b>${n[i]==null?'—':n[i]+l[1]}</b><span>${l[0]}</span></div>`).join('')}</div>`;
+  }).join('')+(m.nu.some(v=>v==null)?'<div class="sub" style="font-size:12.5px;margin-top:6px">This source only provides calories.</div>':'');
+}
+
+/* ---------- Favorites-aware random selection ---------- */
+function prefProfile(){
+  const p={};
+  FAVS.forEach(f=>{const m=getMeal(f.id);if(!m)return;[m.cu,...(m.t||[])].forEach(k=>{if(k)p[k]=(p[k]||0)+1})});
+  return p;
+}
+function weightOf(m,prof){
+  let w=1;[m.cu,...(m.t||[])].forEach(k=>{if(prof[k])w+=0.5*Math.min(prof[k],3)});
+  if(isFav(m.id)) w+=1.5;
+  return Math.min(w,6);
+}
+function pickLocal(cat,n,exclude=[]){
+  const prof=prefProfile(); const recent=HIST[cat]||[];
+  let pool=LIB.filter(m=>m.c===cat&&!exclude.includes(m.id)&&mealOk(m));
+  let fresh=pool.filter(m=>!recent.includes(m.id));
+  if(fresh.length<n) fresh=pool.filter(m=>!recent.slice(-Math.max(0,pool.length-n)).includes(m.id));
+  if(fresh.length<n) fresh=pool;
+  const out=[]; let bag=fresh.slice();
+  while(out.length<n&&bag.length){
+    const tot=bag.reduce((s,m)=>s+weightOf(m,prof),0); let r=Math.random()*tot;
+    let idx=0; for(;idx<bag.length;idx++){r-=weightOf(bag[idx],prof);if(r<=0)break}
+    idx=Math.min(idx,bag.length-1); out.push(bag[idx]); bag.splice(idx,1);
+  }
+  return out;
+}
+
+/* ---------- Exclusions ("Exclude meals with") ---------- */
+const EXC=[
+ ['lamb','Lamb',['lamb','mutton']],
+ ['pork','Pork',['pork','bacon','ham','prosciutto','pancetta','chorizo','sausage','salami']],
+ ['beef','Beef',['beef','steak','sirloin','veal','brisket']],
+ ['poultry','Chicken & turkey',['chicken','turkey','duck']],
+ ['fish','Fish',['fish','salmon','cod','tuna','trout','sardine','anchovy','anchovies','halibut','haddock','branzino','sea bass','char','mackerel','tilapia','snapper']],
+ ['shellfish','Shellfish',['shrimp','prawn','crab','lobster','scallop','clam','mussel','oyster','squid','calamari','octopus','shellfish']],
+ ['eggs','Eggs',['egg','frittata','omelet','omelette','shakshuka','avgolemono']],
+ ['dairy','Dairy',['milk','cheese','yogurt','yoghurt','skyr','feta','parmesan','mozzarella','ricotta','cottage','butter','cream','tzatziki','raita','halloumi','ghee','buttermilk','dairy']],
+ ['gluten','Gluten / wheat',['wheat','flour','bread','pita','pasta','spaghetti','orzo','couscous','farro','bulgur','barley','rye','tortilla','cracker','noodle','soba','panko','breadcrumb','seitan','toast']],
+ ['nuts','Tree nuts',['almond','walnut','pecan','pistachio','cashew','hazelnut','pine nut','macadamia','pesto','nut']],
+ ['peanuts','Peanuts',['peanut']],
+ ['soy','Soy',['soy','tofu','edamame','miso','tempeh','tamari']],
+ ['sesame','Sesame',['sesame','tahini','hummus','za’atar',"za'atar"]],
+ ['mushrooms','Mushrooms',['mushroom','portobello','shiitake']],
+ ['olives','Olives',['olive','kalamata']],
+ ['cilantro','Cilantro',['cilantro']],
+ ['spicy','Spicy heat',['chili','chile','jalapeño','jalapeno','sriracha','gochujang','cayenne','curry paste','red pepper flakes','harissa','hot sauce','aleppo pepper']]
+];
+// phrases that look like an excluded word but aren't (e.g. "almond milk" is not dairy)
+const EX_FP={
+ dairy:/\b(almond|soy|oat|coconut|rice|cashew|plant|hemp)[- ]?(milk|yogurt|yoghurt|cream)s?\b|\b(peanut|almond|nut|cashew|sunflower|cocoa|seed)[- ]butters?\b|\bbutternut\b|\bbutter lettuce\b|\bcream of tartar\b|\bdairy-free\b/gi,
+ gluten:/\b(chickpea|buckwheat|almond|rice|coconut|oat) flour\b|\bcorn tortillas?\b|\brice (noodles?|vermicelli)\b|\bzucchini noodles?\b|\b(chickpea|lentil|rice) pasta\b|\bchickpea or lentil pasta\b|\bgluten-free\b|\b100% buckwheat soba\b|\bbesan\b/gi,
+ olives:/\bolive oil( spray)?\b/gi
+};
+function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+function exCustom(){return String(S.exText||'').split(/[,;\n]+/).map(s=>s.trim().toLowerCase()).filter(s=>s.length>1).slice(0,20)}
+function exLabels(){return (S.ex||[]).map(k=>(EXC.find(e=>e[0]===k)||[])[1]).filter(Boolean).concat(exCustom())}
+function exKeywords(){return (S.ex||[]).flatMap(k=>{const d=EXC.find(e=>e[0]===k);return d?d[2]:[]}).concat(exCustom())}
+let _exKey=null,_exRules=[];
+function exRules(){
+  const key=JSON.stringify([S.ex,S.exText]); if(key===_exKey) return _exRules;
+  const r=[];
+  (S.ex||[]).forEach(k=>{const d=EXC.find(e=>e[0]===k);if(d)r.push({re:new RegExp('\\b(?:'+d[2].map(escRe).join('|')+')(?:s|es)?\\b','i'),fp:EX_FP[k]})});
+  exCustom().forEach(w=>r.push({re:new RegExp('\\b'+escRe(w)+'(?:s|es)?\\b','i')}));
+  _exKey=key;_exRules=r;return r;
+}
+function exHit(text){const t0=String(text||'').toLowerCase();return exRules().some(r=>r.re.test(r.fp?t0.replace(r.fp,' '):t0))}
+// ok = meal fits the exclusions; swaps = ingredient rows replaced by their substitute
+function mealCheck(m){
+  if(!exRules().length) return {ok:true,swaps:[]};
+  if(exHit(m.n)) return {ok:false,swaps:[]};
+  const swaps=[];
+  if(m.i){for(let x=0;x<m.i.length;x++){const item=m.i[x][2],sub=m.i[x][3];if(exHit(item)){if(sub&&!exHit(sub))swaps.push(x);else return {ok:false,swaps:[]}}}}
+  else if(m.ingRaw&&m.ingRaw.some(r=>exHit(r.raw))) return {ok:false,swaps:[]};
+  return {ok:true,swaps};
+}
+function mealOk(m){return mealCheck(m).ok}
+
+/* ---------- Online recipe sources ---------- */
+const IN_VIEWER = typeof window.claude !== 'undefined'; // true on the claude.ai link (outside sites are blocked there)
+function fetchJSON(url,ms=8000,headers){
+  const ctl=new AbortController(); const t=setTimeout(()=>ctl.abort(),ms);
+  return fetch(url,{signal:ctl.signal,headers:headers||{}}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).finally(()=>clearTimeout(t));
+}
+const UNHEALTHY=/fried|\bfry|cake|\bpies?\b|\btart\b|pudding|brownie|cookie|bacon|doughnut|donut|chips|batter|crumble|sausage|full english|creamy|cheesy|syrup|fudge|toffee|deep|pizza|burger|fries|nugget|lasagn|carbonara|alfredo|poutine|chocolate|caramel|biscuit|cinnamon roll|waffle|cocktail|lemonade|ice cream|dessert|candy/i;
+const CAL_MAX={b:550,l:650,d:750,s:250};
+function hashStr(s){let h=0;for(const ch of String(s))h=(h*31+ch.charCodeAt(0))|0;return Math.abs(h).toString(36)}
+function stepsFrom(x){
+  const clean=s=>String(s&&s.step||s||'').replace(/^\s*(step\s*\d+[:.)]?|\d+[.)])\s*/i,'').trim();
+  if(Array.isArray(x)) return x.map(clean).filter(s=>s.length>3);
+  let parts=String(x||'').split(/\r?\n+/);
+  if(parts.length<2) parts=String(x||'').split(/\.\s+(?=[A-Z])/).map((s,i,a)=>i<a.length-1?s+'.':s);
+  const out=parts.map(clean).filter(s=>s.length>3);
+  return out.length?out:['See the original recipe for directions.'];
+}
+
+// 1) TheMealDB — free, world cuisines, weighted toward Mediterranean regions
+const MDB='https://www.themealdb.com/api/json/v1/1/';
+const MED=['a=Greek','a=Italian','a=Spanish','a=Moroccan','a=Turkish','a=Tunisian','a=Croatian','a=Portuguese','a=French','a=Egyptian'];
+const WORLD=['a=Japanese','a=Indian','a=Thai','a=Vietnamese','a=Mexican','a=Malaysian'];
+const MDB_SRC={b:['c=Breakfast'],l:MED.concat(['c=Seafood','c=Vegetarian','c=Vegan'],WORLD.slice(0,4)),d:MED.concat(['c=Seafood','c=Chicken','c=Vegetarian'],WORLD),s:['c=Starter','c=Side']};
+function mdbToMeal(x,cat){
+  const ing=[];
+  for(let i=1;i<=20;i++){const n=(x['strIngredient'+i]||'').trim();if(n)ing.push({raw:((x['strMeasure'+i]||'').trim()+' '+n).trim()})}
+  const tags=(x.strTags||'').split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
+  const area=x.strArea&&x.strArea!=='Unknown'?x.strArea:'';
+  return {id:'mdb-'+x.idMeal,c:cat,n:x.strMeal,cu:area||x.strCategory,t:tags.concat([String(x.strCategory||'').toLowerCase()]).filter(Boolean).slice(0,4),
+    d:`A ${area?area+' ':''}${String(x.strCategory||'dish').toLowerCase()} recipe from TheMealDB community collection.`,
+    p:null,k:null,nu:null,online:'TheMealDB',src:x.strSource||('https://www.themealdb.com/meal/'+x.idMeal),img:x.strMealThumb,
+    ingRaw:ing,s:stepsFrom(x.strInstructions),servingsNote:'Recipe as published (often serves 2–4). Adjust quantities to taste.'};
+}
+async function mdbFetch(cat,n){
+  const recent=HIST[cat]||[]; const out=[];
+  for(const q of shuffle(MDB_SRC[cat].slice()).slice(0,4)){
+    if(out.length>=n) break;
+    let list=LISTS.get(q);
+    if(!list){const j=await fetchJSON(MDB+'filter.php?'+q);list=(j.meals||[]).filter(m=>!UNHEALTHY.test(m.strMeal)&&!exHit(m.strMeal));LISTS.set(q,list)}
+    const cand=shuffle(list.filter(m=>!recent.includes('mdb-'+m.idMeal)&&!out.some(o=>o.id==='mdb-'+m.idMeal))).slice(0,n-out.length+1);
+    const det=await Promise.all(cand.map(c=>fetchJSON(MDB+'lookup.php?i='+c.idMeal).then(j=>j.meals&&j.meals[0]).catch(()=>null)));
+    det.filter(x=>x&&x.strCategory!=='Dessert'&&!UNHEALTHY.test(x.strMeal)).forEach(x=>{const m=mdbToMeal(x,cat);if(out.length<n&&mealOk(m))out.push(m)});
+  }
+  return out;
+}
+
+// 2) DummyJSON Recipes — free, includes meal type, times and calories per serving
+const DJ_TYPES={b:['breakfast'],l:['lunch'],d:['dinner'],s:['snack','appetizer','side dish']};
+function djToMeal(r,cat){
+  const tags=(r.tags||[]).slice(0,3).map(s=>String(s).toLowerCase());
+  return {id:'dj-'+r.id,c:cat,n:r.name,cu:r.cuisine||'Global',t:tags,
+    d:`${r.cuisine||'Global'} dish rated ${String(r.difficulty||'easy').toLowerCase()} to make${tags.length?', tagged '+tags.join(', '):''}.`,
+    p:r.prepTimeMinutes||null,k:r.cookTimeMinutes||null,nu:[r.caloriesPerServing||null,null,null,null,null],online:'DummyJSON',img:r.image,
+    ingRaw:(r.ingredients||[]).map(x=>({raw:String(x)})),s:stepsFrom(r.instructions),
+    servingsNote:`Recipe as published serves ${r.servings||'several'}; adjust quantities to taste.`};
+}
+async function djFetch(cat,n){
+  let all=LISTS.get('dj');
+  if(!all){const j=await fetchJSON('https://dummyjson.com/recipes?limit=0');all=j.recipes||[];LISTS.set('dj',all)}
+  const recent=HIST[cat]||[];
+  const pool=all.filter(r=>(r.mealType||[]).some(t=>DJ_TYPES[cat].includes(String(t).toLowerCase()))&&!UNHEALTHY.test(r.name)&&(r.caloriesPerServing||0)<=CAL_MAX[cat]&&!recent.includes('dj-'+r.id));
+  return shuffle(pool.slice()).map(r=>djToMeal(r,cat)).filter(mealOk).slice(0,n);
+}
+
+// 3) Spoonacular — free key (about 50 points/day), full nutrition, supports exclusions
+const SP_TYPE={b:['breakfast'],l:['salad','soup','main course'],d:['main course'],s:['snack','appetizer']};
+const SP_CUI=['mediterranean','greek','italian','middle eastern','spanish','french','mediterranean','japanese','indian','mexican','korean','vietnamese','thai',''];
+const SP_INTOL={dairy:'dairy',eggs:'egg',gluten:'gluten',nuts:'tree nut',peanuts:'peanut',shellfish:'shellfish',fish:'seafood',soy:'soy',sesame:'sesame'};
+async function spFetch(cat,n){
+  const type=shuffle(SP_TYPE[cat].slice())[0]; const cui=cat==='s'?'':shuffle(SP_CUI.slice())[0];
+  const intol=(S.ex||[]).map(k=>SP_INTOL[k]).filter(Boolean);
+  const exk=exKeywords().filter(w=>!/\s/.test(w)).slice(0,20);
+  const u='https://api.spoonacular.com/recipes/complexSearch?apiKey='+encodeURIComponent(S.key)+'&type='+encodeURIComponent(type)+(cui?'&cuisine='+encodeURIComponent(cui):'')+
+    (intol.length?'&intolerances='+encodeURIComponent(intol.join(',')):'')+(exk.length?'&excludeIngredients='+encodeURIComponent(exk.join(',')):'')+
+    '&number='+(n+3)+'&sort=random&maxCalories='+CAL_MAX[cat]+'&maxSugar=25&maxSaturatedFat=10&addRecipeInformation=true&addRecipeNutrition=true&fillIngredients=true&instructionsRequired=true';
+  const j=await fetchJSON(u,10000); const recent=HIST[cat]||[];
+  return (j.results||[]).filter(r=>!recent.includes('sp-'+r.id)).map(r=>{
+    const get=nm=>{const x=(r.nutrition&&r.nutrition.nutrients||[]).find(z=>z.name===nm);return x?Math.round(x.amount):0};
+    const sv=r.servings||1;
+    const ings=(r.extendedIngredients&&r.extendedIngredients.length?r.extendedIngredients:(r.missedIngredients||[]).concat(r.usedIngredients||[]));
+    const steps=((r.analyzedInstructions&&r.analyzedInstructions[0]&&r.analyzedInstructions[0].steps)||[]).map(s=>s.step);
+    const summary=String(r.summary||'').replace(/<[^>]+>/g,'').split('. ').slice(0,1).join('')+'.';
+    return {id:'sp-'+r.id,c:cat,n:r.title,cu:(r.cuisines&&r.cuisines[0])||'Global',t:(r.diets||[]).slice(0,3),
+      d:summary.length>180?summary.slice(0,177)+'…':summary,p:r.preparationMinutes>0?r.preparationMinutes:null,k:r.cookingMinutes>0?r.cookingMinutes:null,ready:r.readyInMinutes,
+      nu:[get('Calories'),get('Fat'),get('Cholesterol'),get('Sugar'),get('Protein')],online:'Spoonacular',src:r.sourceUrl||r.spoonacularSourceUrl,img:r.image,
+      i:ings.map(g=>[(g.amount||0)/sv,g.unitShort||g.unit||'',g.originalName||g.name,'']),s:steps.length?steps:['See the original recipe for directions.']};
+  }).filter(mealOk).slice(0,n);
+}
+
+// 4) API Ninjas — free key, recipes with nutrition (free tier: 5 results per search)
+const NJ_Q={b:['oatmeal','frittata','shakshuka','omelette','chia pudding','yogurt parfait','egg muffins','avocado toast','quinoa porridge','breakfast burrito'],
+ l:['greek salad','lentil soup','chickpea salad','quinoa salad','tabbouleh','minestrone','gazpacho','tuna salad','white bean soup','fattoush','nicoise salad','buddha bowl','miso soup','black bean soup'],
+ d:['baked salmon','grilled chicken','baked cod','shrimp stir fry','souvlaki','ratatouille','stuffed peppers','chickpea curry','fish tacos','tagine','grilled fish','turkey meatballs','lentil stew','chicken kebab'],
+ s:['hummus','roasted chickpeas','baba ganoush','tzatziki','edamame','trail mix','energy bites','guacamole','stuffed grape leaves','muhammara']};
+function njToMeal(r,cat){
+  if(!r||!r.title) return null;
+  const sv=parseInt(r.servings,10)||1; const nt=r.nutrition||{};
+  const g=k=>{const v=Number(nt[k]);return isFinite(v)?v:null};
+  let nu=[g('calories'),g('total_fat'),g('cholesterol'),g('sugars'),g('protein')];
+  if(nu[0]!=null&&sv>1&&nu[0]>CAL_MAX[cat]*1.3) nu=nu.map(v=>v==null?null:v/sv); // totals -> per serving
+  nu=nu.map(v=>v==null?null:Math.round(v));
+  const ing=Array.isArray(r.ingredients)?r.ingredients:String(r.ingredients||'').split('|');
+  const structured=ing.length>0&&typeof ing[0]==='object';
+  const title=String(r.title).replace(/\b\w/g,c=>c.toUpperCase());
+  return {id:'nj-'+hashStr(r.title),c:cat,n:title,cu:'Global',t:[],d:`A ${title.toLowerCase()} recipe from the API Ninjas recipe database.`,
+    p:null,k:null,nu:nu.every(v=>v==null)?null:nu,online:'API Ninjas',
+    i:structured?ing.map(x=>[(Number(x.quantity)||0)/sv,String(x.unit||''),String(x.name||''),'']):undefined,
+    ingRaw:structured?undefined:ing.map(x=>({raw:String(x).trim()})).filter(x=>x.raw),s:stepsFrom(r.instructions)};
+}
+async function njFetch(cat,n){
+  const qs=shuffle(NJ_Q[cat].filter(q=>!exHit(q))); if(!qs.length) return [];
+  const j=await fetchJSON('https://api.api-ninjas.com/v3/recipe?title='+encodeURIComponent(qs[0])+'&limit=5',8000,{'X-Api-Key':S.nkey});
+  const arr=Array.isArray(j)?j:(j.recipes||j.results||[]); const recent=HIST[cat]||[];
+  return arr.map(r=>njToMeal(r,cat)).filter(m=>m&&!recent.includes(m.id)&&!UNHEALTHY.test(m.n)&&mealOk(m)).slice(0,n);
+}
+
+// Ask every enabled source at once, then interleave results (nutrition-rich sources first)
+async function fetchOnline(cat,n){
+  if(!S.online||!n||IN_VIEWER) return [];
+  const srcs=[mdbFetch,djFetch]; if(S.key) srcs.push(spFetch); if(S.nkey) srcs.push(njFetch);
+  const per=Math.ceil(n/srcs.length)+1;
+  const res=await Promise.all(shuffle(srcs).map(fn=>fn(cat,per).catch(()=>[])));
+  const rich=l=>l[0]&&l[0].nu&&l[0].nu[1]!=null?1:0;
+  res.sort((a,b)=>rich(b)-rich(a));
+  const out=[];
+  for(let r=0;out.length<n&&r<per;r++) for(const list of res){const m=list[r];if(m&&out.length<n&&!out.some(o=>o.id===m.id||o.n.toLowerCase()===m.n.toLowerCase()))out.push(m)}
+  out.forEach(cachePut); return out;
+}
+
+/* ---------- Fresh ideas from Claude (on the claude.ai link) ---------- */
+let SAMPLE=null, aiCtl=null;
+if(IN_VIEWER){(async()=>{try{const s=await window.claude.use('sample');if(s){SAMPLE=s;const b=document.getElementById('aiBox');if(b)b.hidden=false}}catch(e){}})()}
+const CAL_RANGE={b:'300–400',l:'380–480',d:'450–550',s:'100–200'};
+function aiPrompt(cat){
+  const who={f:'woman',m:'man',c:'couple (a woman and a man)'}[S.who];
+  const recent=[...new Set((HIST[cat]||[]).map(id=>(getMeal(id)||{}).n).filter(Boolean))].slice(-25);
+  const prof=Object.entries(prefProfile()).sort((a,b)=>b[1]-a[1]).slice(0,6).map(x=>x[0]);
+  const ex=exLabels();
+  return [
+   `Act as an experienced physician with registered-dietitian training. Create 5 NEW, varied, healthy ${CATS[cat].name.toLowerCase()} recipes for a moderately active, healthy ${who} in their mid-50s.`,
+   `Style: Mediterranean-centric. About 3 of the 5 should be Mediterranean (Greek, Italian, Spanish, Provençal, Levantine, Turkish, Moroccan and similar); the rest healthy dishes from other cuisines (for example Japanese, Indian, Mexican, Korean, Vietnamese, Nordic, Peruvian). Make all 5 clearly different from each other.`,
+   `Nutrition priorities: vegetables, legumes, whole grains, fish, olive oil, nuts and seeds; ${cat==='s'?'at least 5 g':'25–30 g'} protein per serving; low added sugar, sodium and saturated fat. Aim for ${CAL_RANGE[cat]} calories per serving.`,
+   ex.length?`STRICT: never include any of these, as an ingredient, substitute or garnish: ${ex.join(', ')}.`:'',
+   recent.length?`Do not repeat these recipes: ${recent.join('; ')}.`:'',
+   prof.length?`The user's favorites lean toward: ${prof.join(', ')}. Let 1 or 2 ideas reflect that.`:'',
+   `All amounts and nutrition are for ONE standard serving sized for a woman (about 1,800 kcal/day); the app scales portions for men and couples.`,
+   `Reply with ONLY a JSON array of 5 objects shaped like:`,
+   `{"name":"Herbed Lentil Salad","cuisine":"Greek","tags":["vegetarian","high-fiber"],"description":"One sentence, under 25 words.","prepMinutes":10,"cookMinutes":20,"nutrition":{"calories":420,"fat_g":15,"cholesterol_mg":10,"sugar_g":6,"protein_g":22},"ingredients":[{"qty":0.5,"unit":"cup","item":"cooked green lentils","substitute":"chickpeas"}],"steps":["Detailed step with temperatures and times."]}`,
+   `Use units cup, tbsp, tsp, oz, clove, slice, or "" for countable items; qty 0 means "to taste". Give 5–10 ingredients, each with a helpful substitute where sensible (otherwise ""), and 4–7 clear steps.`
+  ].filter(Boolean).join('\n\n');
+}
+function toAiMeal(o,i,cat){
+  if(!o||typeof o!=='object'||!o.name||!Array.isArray(o.ingredients)||!Array.isArray(o.steps)) return null;
+  const nt=o.nutrition||{}; const num=v=>{const x=Number(v);return isFinite(x)&&v!==null&&v!==''?Math.round(x):null};
+  const m={id:'ai-'+Date.now().toString(36)+i,c:cat,n:String(o.name).slice(0,90),cu:String(o.cuisine||'Global').slice(0,30),
+    t:(Array.isArray(o.tags)?o.tags:[]).slice(0,4).map(t=>String(t).slice(0,20)),d:String(o.description||'').slice(0,220),
+    p:num(o.prepMinutes),k:num(o.cookMinutes),nu:[num(nt.calories),num(nt.fat_g),num(nt.cholesterol_mg),num(nt.sugar_g),num(nt.protein_g)],
+    i:o.ingredients.slice(0,15).map(x=>[Number(x&&x.qty)||0,String(x&&x.unit||''),String(x&&x.item||''),String(x&&x.substitute||'')]).filter(x=>x[2]),
+    s:o.steps.slice(0,10).map(String).filter(Boolean),online:'Claude'};
+  if(m.nu.every(v=>v==null)) m.nu=null;
+  return m.i.length&&m.s.length?m:null;
+}
+const AI_MSG={rate_limited:'You’ve reached your Claude usage limit for now. Try again later.',session_expired:'Please sign in to Claude again, then try once more.',invalid_json:'The recipes came back in an unexpected format. Tap Try again.',refused:'Claude couldn’t create recipes for that request. Try changing your exclusions.',empty_completion:'No recipes came back. Tap Try again.'};
+function aiBoxHTML(cat){
+  if(!IN_VIEWER) return '';
+  return `<div class="ai" id="aiBox" ${SAMPLE?'':'hidden'}><b>✨ Want something brand new?</b>
+    <p class="sub" style="margin:4px 0 10px">Claude writes 5 fresh recipes for you, following your exclusions and favorites. It uses your own Claude account and takes about 20–60 seconds.</p>
+    <div id="aiCtl"><button class="btn" onclick="askClaude('${cat}')">Create 5 new ideas</button></div><div id="aiOut"></div></div>`;
+}
+async function askClaude(cat){
+  if(!SAMPLE||!$('#aiCtl')) return;
+  const ctl=new AbortController(); aiCtl=ctl;
+  $('#aiCtl').innerHTML='<div class="loading" style="padding:8px 0 12px"><div class="spin"></div><span id="aiStat">Thinking up new recipes… this can take up to a minute.</span></div><button class="btn ghost" onclick="aiCtl&&aiCtl.abort()">Stop</button>';
+  try{
+    const data=await SAMPLE.json(aiPrompt(cat),{cache:false,signal:ctl.signal,onText:()=>{const st=$('#aiStat');if(st)st.textContent='Writing your recipes…'}});
+    if(aiCtl!==ctl||!$('#aiOut')) return;
+    const arr=Array.isArray(data)?data:(data&&(data.recipes||data.meals))||[];
+    const meals=arr.map((o,i)=>toAiMeal(o,i,cat)).filter(m=>m&&mealOk(m));
+    meals.forEach(cachePut); pushHist(cat,meals.map(m=>m.id));
+    $('#aiOut').innerHTML=meals.length?`<div class="label">New from Claude</div>${meals.map(m=>cardHTML(m)).join('')}`:'<div class="note">None of the new ideas fit your exclusions. Tap the button to try again.</div>';
+    $('#aiCtl').innerHTML=`<button class="btn" onclick="askClaude('${cat}')">Create 5 more ideas</button>`;
+  }catch(e){
+    if(!$('#aiCtl')) return;
+    const c=e&&e.code;
+    if(['not_granted','sampling_disabled','not_declared','capability_disabled','capability_removed'].includes(c)){SAMPLE=null;$('#aiBox').innerHTML='<div class="note">Claude recipe ideas aren’t available here. The library meals above still work.</div>';return}
+    $('#aiCtl').innerHTML=`<button class="btn" onclick="askClaude('${cat}')">${c==='cancelled'?'Create 5 new ideas':'Try again'}</button>`;
+    if(c!=='cancelled') $('#aiOut').insertAdjacentHTML('afterbegin',`<div class="note">${esc(AI_MSG[c]||'Couldn’t get new ideas right now. Tap Try again.')}</div>`);
+  }
+}
+
+/* ---------- Header ---------- */
+function setTop(title,back){
+  $('#topbar').innerHTML = back
+    ? `<button class="back" onclick="goBack()">‹ Back</button><h1>${esc(title)}</h1><button class="back" onclick="go('#/')">Home</button>`
+    : `<div class="logo">🌿</div><h1>Everyday Nourish</h1><button class="back" onclick="go('#/settings')">⚙︎</button>`;
+}
+function go(h){location.hash=h}
+function goBack(){if(history.length>1)history.back();else go('#/')}
+
+/* ---------- Views ---------- */
+let exOpen=false;
+function exHTML(){
+  const l=exLabels();
+  return `<div class="label">Exclude meals with</div>
+  <details class="ex" ${exOpen?'open':''} ontoggle="exOpen=this.open;this.querySelector('.edit').textContent=this.open?'Done':'Edit'">
+   <summary><span id="exSum">${l.length?esc(l.join(', ')):'Nothing excluded'}</span><span class="edit">${exOpen?'Done':'Edit'}</span></summary>
+   <div class="chips">${EXC.map(([k,lab])=>`<button type="button" class="chip ${(S.ex||[]).includes(k)?'on':''}" onclick="toggleEx('${k}',this)">${esc(lab)}</button>`).join('')}</div>
+   <div style="margin-top:12px"><label for="exText" class="sub" style="display:block;margin-bottom:6px">Anything else? Type it in, separated by commas.</label>
+   <input type="text" id="exText" placeholder="e.g. eggplant, kale, coconut" value="${esc(S.exText||'')}" onkeydown="if(event.key==='Enter')saveExText()">
+   <div class="row" style="margin-top:8px"><button class="btn" onclick="saveExText()">Apply</button><button class="btn ghost" onclick="clearEx()">Clear all</button></div></div>
+  </details>`;
+}
+function exChanged(){saveS();LISTS.clear();_exKey=null;const s=$('#exSum');if(s){const l=exLabels();s.textContent=l.length?l.join(', '):'Nothing excluded'}}
+function toggleEx(k,btn){S.ex=S.ex||[];const i=S.ex.indexOf(k);if(i>-1)S.ex.splice(i,1);else S.ex.push(k);if(btn)btn.classList.toggle('on',S.ex.includes(k));exChanged()}
+function saveExText(){const el=$('#exText');S.exText=el?el.value.trim():'';exChanged();toast(exLabels().length?'Exclusions saved':'Nothing excluded')}
+function clearEx(){S.ex=[];S.exText='';exChanged();document.querySelectorAll('.chip.on').forEach(b=>b.classList.remove('on'));const el=$('#exText');if(el)el.value='';toast('Exclusions cleared')}
+function exNote(){const l=exLabels();return l.length?`<div class="note">Excluding: ${esc(l.join(', '))}. Change this on the home screen.</div>`:''}
+
+function vHome(){
+  setTop('',false);
+  const daily=S.mode==='daily';
+  return `
+  <div class="hero"><h2>What’s nourishing today?</h2><p>Healthy meals from around the world with a Mediterranean heart, tuned for active adults in their mid-50s. Fresh ideas every visit.</p></div>
+  <div class="label">Cooking for</div>
+  <div class="seg">${Object.entries(WHO).map(([k,v])=>`<button class="${S.who===k?'on':''}" onclick="setWho('${k}')">${v.name}</button>`).join('')}</div>
+  <div class="label">Plan</div>
+  <div class="seg"><button class="${daily?'on':''}" onclick="setMode('daily')">Daily</button><button class="${!daily?'on':''}" onclick="setMode('weekly')">Weekly</button></div>
+  ${exHTML()}
+  <div class="label">${daily?'Choose a meal — 5 fresh ideas':'Choose a meal — 7 days of ideas'}</div>
+  <div class="grid">
+    ${Object.entries(CATS).map(([k,v])=>`<button class="tile" onclick="go('#/cat/${k}')"><span class="ic">${v.ic}</span><b>${v.name}</b><small>${daily?'5 choices':'Mon – Sun'}</small></button>`).join('')}
+    <button class="tile wide" onclick="go('${daily?'#/day':'#/week'}')"><span class="ic">${daily?'📅':'🗓️'}</span><div><b>${daily?'Plan my whole day':'Plan my whole week'}</b><small>${daily?'Breakfast, lunch, dinner & snacks with totals':'7 days of varied meals with daily totals'}</small></div></button>
+    <button class="tile wide" onclick="go('#/fav')"><span class="ic">❤️</span><div><b>Favorites</b><small>${FAVS.length} saved · used to tailor your suggestions</small></div></button>
+  </div>
+  <p class="foot">Nutrition values are estimates per serving. This app offers general healthy-eating ideas and isn’t medical advice. Check with your doctor or a registered dietitian about your specific needs.</p>`;
+}
+function setWho(k){S.who=k;saveS();render()}
+function setMode(k){S.mode=k;saveS();render()}
+
+function srcBadge(m){return m.online?`<span class="badge">${m.online==='Claude'?'✨':'🌐'} ${esc(m.online)}</span>`:''}
+function cardHTML(m,label){
+  const fav=isFav(m.id); const chk=mealCheck(m);
+  return `<article class="card">
+    ${label?`<div class="badge on">${esc(label)}</div>`:''}
+    <div class="head"><div><a class="ttl" href="#/meal/${encodeURIComponent(m.id)}">${esc(m.n)}</a></div>
+    <button class="heart" aria-label="Favorite" onclick="quickFav('${esc(m.id)}',this)">${fav?'❤️':'🤍'}</button></div>
+    <div>${m.cu?`<span class="badge">${esc(m.cu)}</span>`:''}${srcBadge(m)}${timeBadge(m)}</div>
+    <p>${esc(m.d)}</p>
+    ${!chk.ok?'<div class="swapnote">Contains something you’ve excluded.</div>':chk.swaps.length?'<div class="swapnote">Uses a swap to fit your exclusions.</div>':''}
+    ${nutHTML(m)}</article>`;
+}
+function timeBadge(m){const t=(m.p||0)+(m.k||0)||m.ready;return t?`<span class="badge">⏱ ${t} min</span>`:''}
+function fillPicks(cat,k){let out=[];for(let g=0;g<6&&out.length<k;g++){const p=pickLocal(cat,k-out.length);if(!p.length)break;out=out.concat(p)}return out}
+
+let renderToken=0;
+async function vCat(cat){
+  const c=CATS[cat]; if(!c) return vHome();
+  setTop(c.name,true);
+  const tok=++renderToken;
+  if(S.mode==='weekly'){
+    const picks=fillPicks(cat,7); pushHist(cat,picks.map(m=>m.id));
+    return `<h2 class="pg">${c.ic} ${c.name} for the week</h2><p class="sub">For: ${WHO[S.who].name}. One idea per day, as varied as possible.</p>${exNote()}
+      ${picks.length?picks.map((m,i)=>cardHTML(m,DAYS[i])).join(''):'<div class="card"><p>No library meals fit your exclusions for this meal.</p></div>'}
+      <div class="row"><button class="btn" onclick="render()">↻ New week of ideas</button></div>`;
+  }
+  const nOnline=(S.online&&!IN_VIEWER)?Math.min(4,2+(S.key?1:0)+(S.nkey?1:0)):0;
+  if(nOnline) $('#app').innerHTML=`<h2 class="pg">${c.ic} ${c.name}</h2><p class="sub">Finding fresh ideas…</p><div class="loading"><div class="spin"></div>Gathering recipes from around the web</div>`;
+  const online=await fetchOnline(cat,nOnline);
+  if(tok!==renderToken) return null;
+  const local=pickLocal(cat,5-online.length);
+  const all=shuffle(local.concat(online)).slice(0,5);
+  pushHist(cat,all.map(m=>m.id));
+  return `<h2 class="pg">${c.ic} ${c.name}</h2><p class="sub">5 choices for: ${WHO[S.who].name}${S.who==='c'?' (her & his portions)':''}. Tap a name for the full recipe.</p>${exNote()}
+    ${all.map(m=>cardHTML(m)).join('')}
+    ${all.length<5?`<div class="note">Only ${all.length} meal${all.length===1?'':'s'} fit your exclusions right now.${IN_VIEWER?' Ask Claude below for more.':''}</div>`:''}
+    ${nOnline&&!online.length?'<div class="note">Couldn’t reach online recipe sources right now, so these are library meals.</div>':''}
+    ${aiBoxHTML(cat)}
+    <div class="row"><button class="btn" onclick="render()">↻ Show me 5 new ideas</button></div>`;
+}
+
+function vMeal(id){
+  const m=getMeal(id);
+  if(!m){setTop('Recipe',true);return `<div class="card"><p>This online recipe is no longer in memory. Go back and pick again, or save recipes to Favorites to keep them.</p></div>`}
+  setTop(CATS[m.c]?CATS[m.c].name:'Recipe',true);
+  const sc=SCALE[S.who]; const chk=mealCheck(m);
+  const prep=m.p!=null?Math.round(m.p*(1+0.25*(sc-1))):null;
+  const cook=m.k;
+  const favRec=FAVS.find(f=>f.id===m.id);
+  const ingHTML = m.i
+    ? m.i.map(([q,u,name,sub],x)=>chk.swaps.includes(x)
+        ? `<li><s>${esc(fmtQty(q*sc,u))} ${esc(name)}</s><span class="swap">Use instead: ${esc(sub)} (fits your exclusions)</span></li>`
+        : `<li><span class="q">${esc(fmtQty(q*sc,u))}</span> ${esc(name)}${sub?`<span class="swap">Swap: ${esc(sub)}</span>`:''}</li>`).join('')
+    : (m.ingRaw||[]).map(x=>`<li>${esc(x.raw)}</li>`).join('');
+  return `
+  ${m.img?`<img src="${esc(m.img)}" alt="" style="width:100%;border-radius:16px;max-height:240px;object-fit:cover;margin-bottom:10px" loading="lazy" onerror="this.remove()">`:''}
+  <h2 class="pg">${esc(m.n)}</h2>
+  <div>${m.cu?`<span class="badge">${esc(m.cu)}</span>`:''}${(m.t||[]).map(t=>`<span class="badge">${esc(t)}</span>`).join('')}${srcBadge(m)}</div>
+  <p class="sub" style="margin-top:8px">${esc(m.d)}</p>
+  ${!chk.ok?'<div class="note">Heads up: this recipe contains something on your exclude list.</div>':''}
+  <div class="card">
+    <b>Save to Favorites</b>
+    <div class="saveto">${Object.entries(CATS).map(([k,v])=>`<button class="${favRec&&favRec.cat===k?'on':''}" onclick="saveFav('${esc(m.id)}','${k}')">${v.ic} ${v.name}</button>`).join('')}
+    ${favRec?`<button onclick="removeFav('${esc(m.id)}')">✕ Remove</button>`:''}</div>
+  </div>
+  <div class="times">
+    <div><b>${prep!=null?prep+'m':'—'}</b><span>Prep</span></div>
+    <div><b>${cook!=null?cook+'m':(m.ready?m.ready+'m':'—')}</b><span>${cook!=null?'Cook':'Total'}</span></div>
+    <div><b>${S.who==='c'?2:1}</b><span>${S.who==='c'?'Servings (her + his)':'Serving ('+(S.who==='f'?'her':'his')+')'}</span></div>
+  </div>
+  <div class="section"><h3>Nutrition per serving</h3>${nutHTML(m)}${m.online==='Claude'?'<div class="sub" style="font-size:12.5px;margin-top:6px">Estimated by Claude.</div>':''}</div>
+  <div class="section"><h3>Ingredients</h3>
+    ${m.servingsNote&&!m.i?`<div class="note">${esc(m.servingsNote)}</div>`:`<div class="note">Amounts are scaled for ${S.who==='c'?'a couple (her portion + a larger his portion)':S.who==='f'?'one female serving':'one male serving (about 30% larger)'}. Change “Cooking for” on the home screen to rescale.</div>`}
+    <div class="card"><ul class="ing">${ingHTML}</ul></div></div>
+  <div class="section"><h3>Directions</h3><div class="card"><ol class="steps">${m.s.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>
+    ${S.who==='c'&&cook?'<div class="note">Cooking for two: use a larger pan or sheet so food isn’t crowded. Cook times stay about the same.</div>':''}</div></div>
+  ${m.src?`<p class="sub">Original recipe: <a href="${esc(m.src)}" target="_blank" rel="noopener">view source</a></p>`:''}
+  <p class="foot">Values are estimates. If you have a medical condition (for example diabetes or kidney disease) or take blood thinners, ask your clinician how these foods fit your plan.</p>`;
+}
+
+function planRows(day,mult){
+  const keys=[['b','Breakfast'],['l','Lunch'],['d','Dinner'],['s','Snack'],['s2','Snack']];
+  const tot=[0,0,0,0,0];
+  const rows=keys.map(([k,lab])=>{const m=day[k];
+    if(!m) return `<div class="meal-line"><span class="k">${lab}</span><span style="flex:1;color:var(--muted)">No meal fits your exclusions</span></div>`;
+    m.nu.forEach((v,i)=>tot[i]+=v);
+    return `<div class="meal-line"><span class="k">${lab}</span><a href="#/meal/${m.id}">${esc(m.n)}</a><span class="c">${Math.round(m.nu[0]*mult)} cal</span></div>`}).join('');
+  return {rows,tot};
+}
+function totLine(tot){
+  return WHO[S.who].port.map(([lab,mult])=>`<div class="tot"><b>${S.who==='c'?lab+': ':'Day total: '}</b>${Math.round(tot[0]*mult)} cal · ${Math.round(tot[1]*mult)}g fat · ${Math.round(tot[2]*mult)}mg chol · ${Math.round(tot[3]*mult)}g sugar · ${Math.round(tot[4]*mult)}g protein</div>`).join('');
+}
+function buildDays(n){
+  const pk={b:fillPicks('b',n),l:fillPicks('l',n),d:fillPicks('d',n)}; const snacks=fillPicks('s',n*2);
+  const days=[];for(let i=0;i<n;i++)days.push({b:pk.b[i],l:pk.l[i],d:pk.d[i],s:snacks[i*2],s2:snacks[i*2+1]});
+  ['b','l','d'].forEach(k=>pushHist(k,pk[k].map(m=>m.id)));pushHist('s',snacks.map(m=>m.id));
+  return days;
+}
+function vDay(){
+  setTop('My Day',true);
+  const [d]=buildDays(1); const mult=WHO[S.who].port[0][1]; const {rows,tot}=planRows(d,mult);
+  return `<h2 class="pg">📅 Today’s plan</h2><p class="sub">For: ${WHO[S.who].name}. Tap any meal for the recipe.</p>${exNote()}
+  <div class="card day">${rows}${totLine(tot)}</div>
+  <div class="note">Typical needs at this age (moderately active): about 1,800–2,000 calories a day for women and 2,400–2,600 for men, with 25–30 g protein per meal. Add fruit, a glass of milk or an extra snack if you need more energy.</div>
+  <div class="row"><button class="btn" onclick="render()">↻ New day</button></div>`;
+}
+function vWeek(){
+  setTop('My Week',true);
+  const days=buildDays(7); const mult=WHO[S.who].port[0][1];
+  return `<h2 class="pg">🗓️ This week’s plan</h2><p class="sub">For: ${WHO[S.who].name}. Meals are varied so repeats are rare.</p>${exNote()}
+  ${days.map((d,i)=>{const {rows,tot}=planRows(d,mult);return `<div class="card day"><h3>${DAYS[i]}</h3>${rows}${totLine(tot)}</div>`}).join('')}
+  <div class="note">Day and week plans use the nutrition-checked library so the totals add up. Open Breakfast, Lunch, Dinner or Snacks for online ideas too.</div>
+  <div class="row"><button class="btn" onclick="render()">↻ New week</button></div>`;
+}
+
+let favTab='all';
+function vFav(){
+  setTop('Favorites',true);
+  const list=FAVS.filter(f=>favTab==='all'||f.cat===favTab).map(f=>({f,m:getMeal(f.id)})).filter(x=>x.m);
+  return `<h2 class="pg">❤️ Favorites</h2><p class="sub">Your saves help tailor new suggestions toward what you love.</p>
+  <div class="tabs"><button class="${favTab==='all'?'on':''}" onclick="favTab='all';render()">All</button>${Object.entries(CATS).map(([k,v])=>`<button class="${favTab===k?'on':''}" onclick="favTab='${k}';render()">${v.name}</button>`).join('')}</div>
+  ${list.length?list.map(x=>cardHTML(x.m,CATS[x.f.cat].name)).join(''):'<div class="card"><p>No favorites here yet. Tap 🤍 on any meal to save it.</p></div>'}`;
+}
+
+function vSettings(){
+  setTop('Settings',true);
+  return `<h2 class="pg">⚙︎ Settings</h2>
+  <div class="card"><b>Where new ideas come from</b>
+    ${IN_VIEWER?'<p class="sub" style="margin:4px 0 8px">On this claude.ai link, outside recipe websites are blocked for security, so brand-new ideas come from Claude: tap “Create 5 new ideas” on any meal page. It uses your own Claude account. The downloadable file pulls from the recipe websites listed here.</p>':''}
+    <div class="src"><span><b>Built-in library</b></span><span>${LIB.length} meals · full nutrition</span></div>
+    ${IN_VIEWER?'<div class="src"><span><b>Claude</b></span><span>On this link · full nutrition</span></div>':''}
+    <div class="src"><span><b>TheMealDB</b></span><span>Free · world cuisines · no nutrition</span></div>
+    <div class="src"><span><b>DummyJSON Recipes</b></span><span>Free · calories only</span></div>
+    <div class="src"><span><b>Spoonacular</b></span><span>${S.key?'Key added ✓':'Free key'} · full nutrition · about 50 points/day</span></div>
+    <div class="src"><span><b>API Ninjas</b></span><span>${S.nkey?'Key added ✓':'Free key'} · nutrition</span></div>
+  </div>
+  ${IN_VIEWER?'':`<div class="card">
+    <div class="toggle"><div><b>Online recipe ideas</b><br><small class="sub">Mix recipes from the internet into each list of 5</small></div><button class="sw ${S.online?'on':''}" onclick="S.online=!S.online;saveS();render()"></button></div>
+    <div style="padding-top:12px"><b>Optional free keys</b>
+      <p class="sub" style="margin:4px 0 8px">Keys unlock online recipes with full nutrition. Get them free at <a href="https://spoonacular.com/food-api/console" target="_blank" rel="noopener">spoonacular.com</a> and <a href="https://api-ninjas.com/register" target="_blank" rel="noopener">api-ninjas.com</a>.</p>
+      <label for="key" class="sub">Spoonacular key</label><input type="password" id="key" placeholder="Paste key" value="${esc(S.key)}" style="margin:4px 0 10px">
+      <label for="nkey" class="sub">API Ninjas key</label><input type="password" id="nkey" placeholder="Paste key" value="${esc(S.nkey)}" style="margin-top:4px">
+      <div class="row" style="margin-top:8px"><button class="btn" onclick="S.key=$('#key').value.trim();S.nkey=$('#nkey').value.trim();saveS();clearCache();toast('Keys saved');render()">Save keys</button></div>
+    </div>
+  </div>`}
+  <div class="card"><b>Storage & performance</b>
+    <p class="sub" style="margin:4px 0 8px">The app only keeps your favorites, your settings and exclusions, and a short list of recently shown meals so ideas don’t repeat. Online results live in a small memory cache that trims itself automatically.</p>
+    <div class="row"><button class="btn ghost" onclick="clearCache();toast('Cache cleared')">Clear cache</button>
+    <button class="btn ghost" onclick="HIST={b:[],l:[],d:[],s:[]};store.set('hist',HIST);toast('History reset')">Reset recent history</button>
+    <button class="btn terra" onclick="if(this.dataset.armed){FAVS=[];store.set('favs',FAVS);toast('Favorites cleared');this.textContent='Clear favorites';delete this.dataset.armed}else{this.dataset.armed=1;this.textContent='Tap again to confirm'}">Clear favorites</button></div>
+  </div>
+  <div class="card"><b>Add to your Home Screen</b>
+    <p class="sub" style="margin:4px 0 0">In Safari, tap the Share button, then “Add to Home Screen” to get an icon that opens this planner.</p></div>
+  <div class="card"><b>About the nutrition approach</b>
+    <p class="sub" style="margin:4px 0 0">Meals are Mediterranean-centric, with healthy dishes from Japanese, Indian, Mexican, Korean, Vietnamese, Nordic and other cuisines for variety. They follow Mediterranean and DASH-style principles: vegetables, legumes, whole grains, fish, olive oil and nuts; about 25–30 g protein per main meal to help maintain muscle after 50; and limited added sugar, sodium and saturated fat. Values are estimates and this is general guidance, not medical advice.</p></div>`;
+}
+
+/* ---------- Favorites actions ---------- */
+function saveFav(id,cat){
+  const m=getMeal(id); if(!m) return;
+  FAVS=FAVS.filter(f=>f.id!==id);
+  const rec={id,cat}; if(!LIBMAP[id]) rec.meal=m; // keep full copy only for online meals
+  FAVS.unshift(rec); FAVS=FAVS.slice(0,200); store.set('favs',FAVS);
+  toast('Saved to '+CATS[cat].name); render();
+}
+function removeFav(id){FAVS=FAVS.filter(f=>f.id!==id);store.set('favs',FAVS);toast('Removed');render()}
+function quickFav(id,btn){
+  if(isFav(id)){FAVS=FAVS.filter(f=>f.id!==id);store.set('favs',FAVS);btn.textContent='🤍';toast('Removed from Favorites');return}
+  const m=getMeal(id); if(!m) return;
+  const rec={id,cat:m.c}; if(!LIBMAP[id]) rec.meal=m;
+  FAVS.unshift(rec); FAVS=FAVS.slice(0,200); store.set('favs',FAVS); btn.textContent='❤️'; toast('Saved to '+CATS[m.c].name);
+}
+
+/* ---------- Router ---------- */
+async function render(){
+  if(aiCtl){aiCtl.abort();aiCtl=null}
+  const h=location.hash||'#/'; const parts=h.slice(2).split('/');
+  let html;
+  try{
+    if(parts[0]==='cat') html=await vCat(parts[1]);
+    else if(parts[0]==='meal') html=vMeal(decodeURIComponent(parts[1]||''));
+    else if(parts[0]==='fav') html=vFav();
+    else if(parts[0]==='day') html=vDay();
+    else if(parts[0]==='week') html=vWeek();
+    else if(parts[0]==='settings') html=vSettings();
+    else html=vHome();
+  }catch(e){html='<div class="card"><p>Something went wrong. Please go back and try again.</p></div>'}
+  if(html==null) return;
+  $('#app').innerHTML=html; window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',render);
+window.addEventListener('pagehide',clearCache); // free memory when leaving
+
+/* ---------- Home-screen icon ---------- */
+(function icon(){
+  try{
+    const c=document.createElement('canvas');c.width=c.height=180;const x=c.getContext('2d');
+    const g=x.createLinearGradient(0,0,180,180);g.addColorStop(0,'#5b6b3a');g.addColorStop(1,'#8fa35f');
+    x.fillStyle=g;x.fillRect(0,0,180,180);
+    x.fillStyle='#f7f3ea';x.beginPath();x.ellipse(90,84,34,58,Math.PI/4,0,Math.PI*2);x.fill();
+    x.strokeStyle='#5b6b3a';x.lineWidth=5;x.beginPath();x.moveTo(52,128);x.lineTo(124,48);x.stroke();
+    x.fillStyle='#c0623b';x.beginPath();x.arc(132,134,14,0,Math.PI*2);x.fill();
+    const url=c.toDataURL('image/png');
+        const f=document.createElement('link');f.rel='icon';f.href=url;document.head.appendChild(f);
+  }catch(e){}
+})();
+
+render();
+</script>
+</body>
+</html>
